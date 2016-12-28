@@ -23,7 +23,7 @@ public class Card {
 	@Column(name="deckid")
 	private int deckId;
 	
-	@Column(name="srsStatus")
+	@Column(name="srs_status")
 	private int srsStatus;
 	
 	@Column(name="front")

@@ -21,7 +21,7 @@ public class CardDAOImpl implements CardDAO {
 	public List<Card> getCards(int deckId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		Query query = currentSession.createQuery("from Card where id=" + deckId);
+		Query query = currentSession.createQuery("from Card where deckid=" + deckId);
 
 		// get the result list
 		List<Card> cards = query.list();
