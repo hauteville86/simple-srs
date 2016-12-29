@@ -2,6 +2,8 @@ package pl.karolcyprowski.simple.srs.service;
 
 import java.util.List;
 
+import pl.karolcyprowski.simple.srs.business.BaseInfo;
+import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 
@@ -14,4 +16,8 @@ public interface SimpleSrsService {
 	public Deck getDeck(int deckId);
 	
 	public Card getCard(int cardId);
+
+	public DeckInfo getDeckInfo(int deckId);
+	
+	public BaseInfo getBaseInfo();
 }
