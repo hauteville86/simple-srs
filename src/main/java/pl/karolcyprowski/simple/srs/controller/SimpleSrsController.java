@@ -22,14 +22,13 @@ public class SimpleSrsController {
 	static Logger logger = Logger.getLogger(SimpleSrsController.class);
 	
 	@Autowired
-	private SimpleSrsService simpleSrsService;
+	private BaseInfo baseInfo;
 	
 	@RequestMapping("/test")
 	public String showBase(Model model)
 	{
 		logger.info("Entering showBase()");
-		BaseInfo baseInfo = simpleSrsService.getBaseInfo();
-		List<Deck> decks = baseInfo.getDecks();
+		List<DeckInfo> decks = baseInfo.getDecks();
 		model.addAttribute("decks", decks);
 		return "testview";
 	}
@@ -38,11 +37,20 @@ public class SimpleSrsController {
 	public String showDeck(@RequestParam("id") int deckId, Model model)
 	{
 		logger.info("Entering showDeck(deckid=" + deckId + ")");
-		DeckInfo deckInfo = simpleSrsService.getDeckInfo(deckId);
-		List<Card> cards = deckInfo.getCards();
-		Deck deck = deckInfo.getDeck();
-		model.addAttribute("cards", cards);
-		model.addAttribute("deck", deck);
+		List<DeckInfo> decks = baseInfo.getDecks();
+		for(int i = 0; i < decks.size(); i++)
+		{
+			DeckInfo deckInfo = decks.get(i);
+			int id = deckInfo.getDeck().getId();
+			if(id == deckId)
+			{
+				List<Card> cards = deckInfo.getCards();
+				Deck deck = deckInfo.getDeck();
+				model.addAttribute("cards", cards);
+				model.addAttribute("deck", deck);
+				i = decks.size();
+			}
+		}		
 		return "deck";
 	}
 }

@@ -6,18 +6,23 @@ import pl.karolcyprowski.simple.srs.entities.Deck;
 
 public class BaseInfoImpl implements BaseInfo {
 
-	private List<Deck> decks;
+	private List<DeckInfo> decks;
 	
-	public BaseInfoImpl(List<Deck> decks)
+	public BaseInfoImpl(List<DeckInfo> decks)
 	{
 		this.decks = decks;
 	}
+	
+	public BaseInfoImpl()
+	{
+		
+	}
 
-	public List<Deck> getDecks() {
+	public List<DeckInfo> getDecks() {
 		return decks;
 	}
 
-	public void setDecks(List<Deck> decks) {
+	public void setDecks(List<DeckInfo> decks) {
 		this.decks = decks;
 	}
 	

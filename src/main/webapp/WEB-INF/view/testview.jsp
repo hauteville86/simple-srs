@@ -13,20 +13,18 @@
 		<tr>
 			<th>Name</th>
 			<th>Language</th>
-			<th>Comment</th>
-			<th>Created on:</th>
+			<th>Cards to review</th>
 		</tr>
 
 		<c:forEach var="deck" items="${decks}">
 
 			<tr>
-				<td>${deck.name}</td>
-				<td>${deck.language}</td>
-				<td>${deck.comment}</td>
-				<td>${deck.created}</td>
+				<td>${deck.deck.name}</td>
+				<td>${deck.deck.language}</td>
+				<td>${deck.numOfCardsToReview}</td>
 				<td>
 					<c:url var="openLink" value="/showDeck">
-						<c:param name="id" value="${deck.id}"/>
+						<c:param name="id" value="${deck.deck.id}"/>
 					</c:url>
 					<a href="${openLink}">Open</a>
 				</td>

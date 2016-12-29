@@ -17,7 +17,7 @@ public interface SimpleSrsService {
 	
 	public Card getCard(int cardId);
 
-	public DeckInfo getDeckInfo(int deckId);
+	public DeckInfo getDeckInfo(Deck deck, int deckId);
 	
-	public BaseInfo getBaseInfo();
+	public BaseInfo generateBaseInfo();
 }

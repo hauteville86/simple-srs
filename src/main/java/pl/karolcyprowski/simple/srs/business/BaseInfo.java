@@ -6,7 +6,7 @@ import pl.karolcyprowski.simple.srs.entities.Deck;
 
 public interface BaseInfo {
 
-	public List<Deck> getDecks();
+	public List<DeckInfo> getDecks();
 	
-	public void setDecks(List<Deck> decks);
+	public void setDecks(List<DeckInfo> decks);
 }

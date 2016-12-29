@@ -1,5 +1,6 @@
 package pl.karolcyprowski.simple.srs.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,18 +50,30 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	}
 
 	@Override
-	public DeckInfo getDeckInfo(int deckId) {
+	@Transactional
+	public DeckInfo getDeckInfo(Deck deck, int deckId) {
 		List<Card> cards = getCards(deckId);
-		Deck deck = getDeck(deckId);
+		if(deck == null)
+		{
+			deck = getDeck(deckId);
+		}	
 		DeckInfo deckInfo = new DeckInfoImpl(deck, cards);
 		return deckInfo;
 	}
 
 	@Override
-	public BaseInfo getBaseInfo() {
-		List<Deck> decks = getDecks();
-		BaseInfo baseInfo = new BaseInfoImpl(decks);
-		return baseInfo;
+	@Transactional
+	public BaseInfo generateBaseInfo() {
+		BaseInfo baseInfo = new BaseInfoImpl();
+		List<Deck> decksEntities = getDecks();
+		List<DeckInfo> decks = new LinkedList<DeckInfo>();
+		for(Deck deckEntity : decksEntities)
+		{
+			DeckInfo deckInfo = getDeckInfo(deckEntity, deckEntity.getId());
+			decks.add(deckInfo);
+		}
+		baseInfo.setDecks(decks);;
+		return baseInfo;	
 	}
 	
 	

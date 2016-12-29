@@ -13,15 +13,13 @@ public class DeckInfoImpl implements DeckInfo {
 	
 	private List<Card> cards;
 	
+	private int numOfCards;
+	private int numOfCardsToReview;
+	
 	public DeckInfoImpl(Deck deck, List<Card> cards)
 	{
 		this.deck = deck;
 		this.cards = cards;
-	}
-	
-	public int getNumOfCards()
-	{
-		return cards.size();
 	}
 
 	public Deck getDeck() {
@@ -51,6 +49,22 @@ public class DeckInfoImpl implements DeckInfo {
 			}
 		}
 		return cardsToReview;
+	}
+
+	public int getNumOfCards() {
+		return numOfCards;
+	}
+
+	public void setNumOfCards(int numOfCards) {
+		this.numOfCards = numOfCards;
+	}
+
+	public int getNumOfCardsToReview() {
+		return numOfCardsToReview;
+	}
+
+	public void setNumOfCardsToReview(int numOfCardsToReview) {
+		this.numOfCardsToReview = numOfCardsToReview;
 	}
 	
 	
