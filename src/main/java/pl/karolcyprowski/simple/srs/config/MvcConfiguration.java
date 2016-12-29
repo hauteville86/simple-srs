@@ -12,6 +12,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.karolcyprowski.simple.srs.business.BaseInfo;
 import pl.karolcyprowski.simple.srs.business.BaseInfoImpl;
+import pl.karolcyprowski.simple.srs.business.ReviewSession;
+import pl.karolcyprowski.simple.srs.business.ReviewSessionImpl;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Configuration
@@ -39,6 +41,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public BaseInfo base()
 	{
 		return simpleSrsService.generateBaseInfo();
+	}
+	
+	@Bean
+	public ReviewSession reviewSession()
+	{
+		return new ReviewSessionImpl();
 	}
 
     @Override

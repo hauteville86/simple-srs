@@ -9,4 +9,6 @@ public interface BaseInfo {
 	public List<DeckInfo> getDecks();
 	
 	public void setDecks(List<DeckInfo> decks);
+	
+	public DeckInfo getDeck(int deckId);
 }

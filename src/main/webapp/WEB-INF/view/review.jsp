@@ -9,15 +9,7 @@
 </head>
 <body>
 	<table>
-		<h3>Deck name: ${deck.name}</h3>
-		<h3>Language: ${deck.language}</h3>
-		<tr>Created: ${deck.created}</tr>
-		<tr>Cards to review: ${deckInfo.numOfCardsToReview}</tr>
-
-		<c:url var="reviewLink" value="/startReview">
-			<c:param name="id" value="${deck.id}"/> 
-		</c:url>
-		<a href="${reviewLink}">Review</a>
+		<tr><h4>${card.front}</h4></tr>
 	</table>
 </body>
 </html>
