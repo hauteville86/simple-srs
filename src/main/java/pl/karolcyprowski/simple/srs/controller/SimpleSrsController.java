@@ -69,7 +69,19 @@ public class SimpleSrsController {
 			reviewSession.setReviewDeckId(deckId);
 			reviewSession.setReviewCardIterator(cardsIterator);
 		}
-		model.addAttribute("card", cardsIterator.next());
-		return "review";
+		if(cardsIterator.hasNext())
+		{
+			Card card = cardsIterator.next();
+			model.addAttribute("card", card);
+			logger.info("Review the card with id=" + card.getId());
+			return "review";
+		}
+		else
+		{
+			logger.info("Card iterator is empty. Finish the review session.");
+			reviewSession.clearReviewSession();
+			return "endofreviewsession";
+		}
+		
 	}
 }
