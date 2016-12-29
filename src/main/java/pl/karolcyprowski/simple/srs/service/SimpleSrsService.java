@@ -12,4 +12,6 @@ public interface SimpleSrsService {
 	public List<Card> getCards(int deckId);
 
 	public Deck getDeck(int deckId);
+	
+	public Card getCard(int cardId);
 }

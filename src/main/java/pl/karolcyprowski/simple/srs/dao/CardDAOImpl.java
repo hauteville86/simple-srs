@@ -29,4 +29,11 @@ public class CardDAOImpl implements CardDAO {
 		return cards;
 	}
 
+	@Override
+	public Card getCard(int cardId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Card card = currentSession.get(Card.class, cardId);
+		return card;
+	}
+
 }

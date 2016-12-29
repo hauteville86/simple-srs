@@ -38,4 +38,10 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 		return deckDAO.getDeck(deckId);
 	}
 
+	@Override
+	@Transactional
+	public Card getCard(int cardId) {
+		return cardDAO.getCard(cardId);
+	}
+
 }

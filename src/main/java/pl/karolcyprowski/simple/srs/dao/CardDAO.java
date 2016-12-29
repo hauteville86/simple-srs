@@ -6,6 +6,8 @@ import pl.karolcyprowski.simple.srs.entities.Card;
 
 public interface CardDAO {
 
-	List<Card> getCards(int deckId);
+	public List<Card> getCards(int deckId);
+
+	public Card getCard(int cardId);
 
 }
