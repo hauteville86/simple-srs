@@ -17,5 +17,12 @@ public interface DeckInfo {
 	
 	public int getNumOfCards();
 	
+	public void setNumOfCards(int numOfCards);
+
+	public int getNumOfCardsToReview();
+
+	public void setNumOfCardsToReview(int numOfCardsToReview);
+	
+	public List<Card> getCardsToReview();
 	
 }

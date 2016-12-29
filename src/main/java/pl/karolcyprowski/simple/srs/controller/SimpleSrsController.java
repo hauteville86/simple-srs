@@ -48,9 +48,32 @@ public class SimpleSrsController {
 				Deck deck = deckInfo.getDeck();
 				model.addAttribute("cards", cards);
 				model.addAttribute("deck", deck);
+				model.addAttribute("deckInfo", deckInfo);
 				i = decks.size();
 			}
 		}		
 		return "deck";
+	}
+	
+	@RequestMapping("/startReview")
+	public String startReview(@RequestParam("id") int deckId, Model model)
+	{
+		logger.info("Entering showDeck(deckid=" + deckId + ")");
+		List<DeckInfo> decks = baseInfo.getDecks();
+		for(int i = 0; i < decks.size(); i++)
+		{
+			DeckInfo deckInfo = decks.get(i);
+			int id = deckInfo.getDeck().getId();
+			if(id == deckId)
+			{
+				List<Card> cards = deckInfo.getCards();
+				Deck deck = deckInfo.getDeck();
+				model.addAttribute("cards", cards);
+				model.addAttribute("deck", deck);
+				model.addAttribute("deckInfo", deckInfo);
+				i = decks.size();
+			}
+		}		
+		return "review";
 	}
 }

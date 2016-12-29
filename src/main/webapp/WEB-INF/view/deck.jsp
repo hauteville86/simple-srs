@@ -11,28 +11,13 @@
 	<table>
 		<h3>Deck name: ${deck.name}</h3>
 		<h3>Language: ${deck.language}</h3>
-		<tr>
-			<th>Id</th>
-			<th>Front</th>
-			<th>Back</th>
-			<th>SRS status:</th>
-		</tr>
+		<tr>Created: ${deck.created}</tr>
+		<tr>Cards to review: ${deckInfo.numOfCardsToReview}</tr>
 
-		<c:forEach var="card" items="${cards}">
-			<tr>
-				<td>${card.id}</td>
-				<td>${card.front}</td>
-				<td>${card.back}</td>
-				<td>${card.srsStatus}</td>
-				<td>
-					<c:url var="openLink" value="/showDeck">
-						<c:param name="id" value="${deck.id}"/>
-					</c:url>
-					<a href="${openLink}">Open</a>
-				</td>
-			</tr>
-
-		</c:forEach>
+		<c:url var="reviewLink" value="/startReview">
+			<c:param name="id" value="${deck.deck.id}"/> 
+		</c:url>
+		<a href="${reviewLink}">Review</a>
 	</table>
 </body>
 </html>

@@ -20,6 +20,7 @@ public class DeckInfoImpl implements DeckInfo {
 	{
 		this.deck = deck;
 		this.cards = cards;
+		updateDeckInfo();	
 	}
 
 	public Deck getDeck() {
@@ -65,6 +66,20 @@ public class DeckInfoImpl implements DeckInfo {
 
 	public void setNumOfCardsToReview(int numOfCardsToReview) {
 		this.numOfCardsToReview = numOfCardsToReview;
+	}
+	
+	private void updateDeckInfo()
+	{
+		numOfCards = cards.size();
+		int cardsToReviewCounter = 0;
+		for(Card card : cards)
+		{
+			if(card.getNextRepeat().before(new Date()))
+			{
+				cardsToReviewCounter++;
+			}
+		}
+		numOfCardsToReview = cardsToReviewCounter;
 	}
 	
 	
