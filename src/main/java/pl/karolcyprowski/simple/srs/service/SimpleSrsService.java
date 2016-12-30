@@ -24,4 +24,6 @@ public interface SimpleSrsService {
 	public void updateCard(int cardId, int srsLevel, int srsStatus);
 
 	public void addCard(Card card);
+
+	public void addDeck(Deck deck);
 }

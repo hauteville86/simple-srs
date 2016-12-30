@@ -41,4 +41,10 @@ public class DeckDAOImpl implements DeckDAO {
 
 		return deck;
 	}
+
+	@Override
+	public void addDeck(Deck deck) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.saveOrUpdate(deck);
+	}
 }

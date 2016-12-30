@@ -95,4 +95,10 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 		cardDAO.addCard(card);
 	}
 
+	@Override
+	@Transactional
+	public void addDeck(Deck deck) {
+		deckDAO.addDeck(deck);
+	}
+
 }
