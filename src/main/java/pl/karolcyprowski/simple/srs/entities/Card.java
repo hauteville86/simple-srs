@@ -1,6 +1,7 @@
 package pl.karolcyprowski.simple.srs.entities;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +50,8 @@ public class Card {
 	
 	public Card()
 	{
-		
+		created = new Date();
+		nextRepeat = new Date();
 	}
 
 	public Card(int deckId, int srsStatus, String front, String back, String comment, Date created, Date lastUpdated,
@@ -136,6 +138,46 @@ public class Card {
 	public void setNextRepeat(Date nextRepeat) {
 		this.nextRepeat = nextRepeat;
 	}
+
+	public void changeWithMap(Map<String, Object> valuesToUpdate) {
+		if(valuesToUpdate.get("mode").equals("review"))
+		{
+			int newSrsStatus = (Integer)(valuesToUpdate.get("srsStatus"));
+			this.setSrsStatus(newSrsStatus);
+			Date newLastUpdate = (Date)valuesToUpdate.get("lastUpdate");
+			this.setLastUpdated(newLastUpdate);
+			Date newNextRepeat = (Date)valuesToUpdate.get("nextRepeat");
+			this.setNextRepeat(newNextRepeat);
+		}
+		
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Card [id=");
+		builder.append(id);
+		builder.append(", deckId=");
+		builder.append(deckId);
+		builder.append(", srsStatus=");
+		builder.append(srsStatus);
+		builder.append(", front=");
+		builder.append(front);
+		builder.append(", back=");
+		builder.append(back);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", created=");
+		builder.append(created);
+		builder.append(", lastUpdated=");
+		builder.append(lastUpdated);
+		builder.append(", nextRepeat=");
+		builder.append(nextRepeat);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 	
 	
 }

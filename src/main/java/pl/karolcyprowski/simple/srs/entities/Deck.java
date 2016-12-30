@@ -99,4 +99,25 @@ public class Deck {
 		this.lastUpdated = lastUpdated;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Deck [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", language=");
+		builder.append(language);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", created=");
+		builder.append(created);
+		builder.append(", lastUpdated=");
+		builder.append(lastUpdated);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
+
 }

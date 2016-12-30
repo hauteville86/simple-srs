@@ -1,15 +1,19 @@
 package pl.karolcyprowski.simple.srs.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pl.karolcyprowski.simple.srs.business.BaseInfo;
+import pl.karolcyprowski.simple.srs.business.DeckInfo;
+import pl.karolcyprowski.simple.srs.business.ReviewSession;
+import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
@@ -21,24 +25,143 @@ public class SimpleSrsController {
 	static Logger logger = Logger.getLogger(SimpleSrsController.class);
 	
 	@Autowired
+	private BaseInfo baseInfo;
+	
+	@Autowired
+	private ReviewSession reviewSession;
+	
+	@Autowired
 	private SimpleSrsService simpleSrsService;
 	
+	@Autowired
+	private SrsAlgorithm srsAlgorithm;
+	
+	private Iterator<Card> cardsIterator;
+	
 	@RequestMapping("/test")
-	public String test(Model model)
+	public String showBase(Model model)
 	{
-		logger.info("Enter:");
-		List<Deck> decks = simpleSrsService.getDecks();
+//		createCardsForTestPurposes();
+		logger.info("Entering showBase()");
+		List<DeckInfo> decks = baseInfo.getDecks();
 		model.addAttribute("decks", decks);
 		return "testview";
 	}
 	
+	private void createCardsForTestPurposes() {
+		for(int i = 0; i < 50; i++)
+		{
+			logger.info("Add new card with i=" + i);
+			Card card = new Card();
+			card.setFront("Front " + i);
+			card.setBack("Back " + i);
+			card.setDeckId(1);
+			simpleSrsService.addCard(card);
+		}
+		
+	}
+
 	@RequestMapping("/showDeck")
 	public String showDeck(@RequestParam("id") int deckId, Model model)
 	{
-		List<Card> cards = simpleSrsService.getCards(deckId);
-		Deck deck = simpleSrsService.getDeck(deckId);
+		logger.info("Entering showDeck(deckid=" + deckId + ")");
+		DeckInfo deckInfo = baseInfo.getDeck(deckId);
+		List<Card> cards = deckInfo.getCards();
+		Deck deck = deckInfo.getDeck();
 		model.addAttribute("cards", cards);
 		model.addAttribute("deck", deck);
+		model.addAttribute("deckInfo", deckInfo);	
 		return "deck";
+	}
+	
+	@RequestMapping("/startReview")
+	public String startReview(@RequestParam("id") int deckId, Model model)
+	{
+		logger.info("Entering startReview(deckid=" + deckId + ")");
+		if(reviewSession.isActiveSession())
+		{
+			logger.info("Review session is still active with id=" + deckId);
+			cardsIterator = reviewSession.getReviewCardIterator();
+		}
+		else
+		{
+			initializeDeckReview(deckId);
+		}
+		Card card = reviewSession.getReviewCard();
+		if(card == null)
+		{
+			if(cardsIterator.hasNext())
+			{
+				card = cardsIterator.next(); 
+				reviewSession.setReviewCard(card);
+				model.addAttribute("card", card);
+				model.addAttribute("buttons", srsAlgorithm.getButtons());
+				logger.info("Review the card with id=" + card.getId());
+				return "review";
+			}
+			else
+			{
+				logger.info("Card iterator is empty. Finish the review session.");
+				reviewSession.clearReviewSession();
+				baseInfo = simpleSrsService.generateBaseInfo();
+				return "endofreviewsession";
+			}
+		}
+		else
+		{
+			model.addAttribute("card", card);
+			model.addAttribute("buttons", srsAlgorithm.getButtons());
+			logger.info("Review the card with id=" + card.getId());
+			return "review";
+		}
+		
+		
+	}
+	
+	private void initializeDeckReview(int deckId)
+	{
+		DeckInfo deckInfo = baseInfo.getDeck(deckId);
+		List<Card> cardsToReview = deckInfo.getCardsToReview();
+		cardsIterator = cardsToReview.iterator();
+		logger.info("Create new review session with id=" + deckId);
+		reviewSession.setReviewDeckId(deckId);
+		reviewSession.setReviewCardIterator(cardsIterator);
+	}
+	
+	@RequestMapping("/updateCard")
+	public String updateCard(@RequestParam("cardId") int cardId, @RequestParam("srsLevel") int srsLevel, Model model)
+	{
+		logger.info("Updating card information in progress...");
+		logger.info("SrsLevel for card with cardId=" + cardId + " equals to " + srsLevel);
+		int cardSrsStatus = reviewSession.getReviewCard().getSrsStatus();
+		simpleSrsService.updateCard(cardId, srsLevel, cardSrsStatus);
+		if(cardsIterator == null)
+		{
+			cardsIterator = reviewSession.getReviewCardIterator();
+			if(cardsIterator == null)
+			{
+				// Exit the updateCard mapping if cardsIterator hasn't been saved in ReviewSession object
+				logger.warn("WARNING: cardsIterator is null");
+				List<DeckInfo> decks = baseInfo.getDecks();
+				model.addAttribute("decks", decks);
+				return "testview";
+			}
+		}
+		if(cardsIterator.hasNext())
+		{
+			Card card = cardsIterator.next();
+			reviewSession.setReviewCard(card);
+			model.addAttribute("card", card);
+			model.addAttribute("buttons", srsAlgorithm.getButtons());
+			logger.info("Review the card with id=" + card.getId());
+			return "review";
+		}
+		else
+		{
+			logger.info("Card iterator is empty. Finish the review session.");
+			reviewSession.clearReviewSession();
+			baseInfo = simpleSrsService.generateBaseInfo();
+			return "endofreviewsession";
+		}	
 	}
 }

@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+#back {
+	color: white;
+}
+
+#go-to-next-button {
+	display: block;
+}
+
+#srs-buttons {
+	display: none;
+}
