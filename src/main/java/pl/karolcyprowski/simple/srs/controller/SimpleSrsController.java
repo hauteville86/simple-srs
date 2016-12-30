@@ -41,12 +41,26 @@ public class SimpleSrsController {
 	@RequestMapping("/test")
 	public String showBase(Model model)
 	{
+//		createCardsForTestPurposes();
 		logger.info("Entering showBase()");
 		List<DeckInfo> decks = baseInfo.getDecks();
 		model.addAttribute("decks", decks);
 		return "testview";
 	}
 	
+	private void createCardsForTestPurposes() {
+		for(int i = 0; i < 50; i++)
+		{
+			logger.info("Add new card with i=" + i);
+			Card card = new Card();
+			card.setFront("Front " + i);
+			card.setBack("Back " + i);
+			card.setDeckId(1);
+			simpleSrsService.addCard(card);
+		}
+		
+	}
+
 	@RequestMapping("/showDeck")
 	public String showDeck(@RequestParam("id") int deckId, Model model)
 	{

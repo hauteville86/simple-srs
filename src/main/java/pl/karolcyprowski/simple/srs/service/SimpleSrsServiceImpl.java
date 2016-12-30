@@ -89,6 +89,10 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 		cardDAO.updateCard(cardId, valuesToUpdate);
 	}
 	
-	
+	@Transactional
+	public void addCard(Card card)
+	{
+		cardDAO.addCard(card);
+	}
 
 }

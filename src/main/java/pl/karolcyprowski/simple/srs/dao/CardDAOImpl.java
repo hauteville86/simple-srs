@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.context.spi.CurrentSessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -47,6 +48,13 @@ public class CardDAOImpl implements CardDAO {
 		Card card = currentSession.get(Card.class, cardId);
 		card.changeWithMap(valuesToUpdate);
 		currentSession.saveOrUpdate(card);
+	}
+	
+	public void addCard(Card card)
+	{
+		logger.info("Adding the card: " + card.toString());
+		Session currentSesion = sessionFactory.getCurrentSession();
+		currentSesion.saveOrUpdate(card);
 	}
 
 }

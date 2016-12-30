@@ -50,7 +50,8 @@ public class Card {
 	
 	public Card()
 	{
-		
+		created = new Date();
+		nextRepeat = new Date();
 	}
 
 	public Card(int deckId, int srsStatus, String front, String back, String comment, Date created, Date lastUpdated,

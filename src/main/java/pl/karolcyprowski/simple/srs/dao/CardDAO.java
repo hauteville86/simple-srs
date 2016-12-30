@@ -13,4 +13,6 @@ public interface CardDAO {
 
 	public void updateCard(int cardId, Map<String, Object> valuesToUpdate);
 
+	public void addCard(Card card);
+
 }

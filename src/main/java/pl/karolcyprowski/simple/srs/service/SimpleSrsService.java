@@ -22,4 +22,6 @@ public interface SimpleSrsService {
 	public BaseInfo generateBaseInfo();
 	
 	public void updateCard(int cardId, int srsLevel, int srsStatus);
+
+	public void addCard(Card card);
 }
