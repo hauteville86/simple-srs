@@ -117,14 +117,21 @@ public class SimpleSrsController {
 	@RequestMapping("/updateCard")
 	public String updateCard(@RequestParam("cardId") int cardId, @RequestParam("srsLevel") int srsLevel, Model model)
 	{
-		//TODO: Update card operation should be implemented here
 		logger.info("Updating card information in progress...");
 		logger.info("SrsLevel for card with cardId=" + cardId + " equals to " + srsLevel);
 		int cardSrsStatus = reviewSession.getReviewCard().getSrsStatus();
 		simpleSrsService.updateCard(cardId, srsLevel, cardSrsStatus);
 		if(cardsIterator == null)
 		{
-			cardsIterator = reviewSession.getReviewCardIterator(); 
+			cardsIterator = reviewSession.getReviewCardIterator();
+			if(cardsIterator == null)
+			{
+				// Exit the updateCard mapping if cardsIterator hasn't been saved in ReviewSession object
+				logger.warn("WARNING: cardsIterator is null");
+				List<DeckInfo> decks = baseInfo.getDecks();
+				model.addAttribute("decks", decks);
+				return "testview";
+			}
 		}
 		if(cardsIterator.hasNext())
 		{

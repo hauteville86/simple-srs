@@ -10,9 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.entities.Card;
-import pl.karolcyprowski.simple.srs.entities.Deck;
 
 @Repository
 public class CardDAOImpl implements CardDAO {
