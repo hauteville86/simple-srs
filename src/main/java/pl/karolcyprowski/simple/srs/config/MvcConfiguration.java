@@ -1,5 +1,6 @@
 package pl.karolcyprowski.simple.srs.config;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,11 +15,16 @@ import pl.karolcyprowski.simple.srs.business.BaseInfo;
 import pl.karolcyprowski.simple.srs.business.BaseInfoImpl;
 import pl.karolcyprowski.simple.srs.business.ReviewSession;
 import pl.karolcyprowski.simple.srs.business.ReviewSessionImpl;
+import pl.karolcyprowski.simple.srs.business.SimpleSrsGlossAlgorithm;
+import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
+import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Configuration
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
+	
+	static Logger logger = Logger.getLogger(SimpleSrsController.class);
 	
 	@Autowired
 	public SimpleSrsService simpleSrsService;
@@ -47,6 +53,14 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public ReviewSession reviewSession()
 	{
 		return new ReviewSessionImpl();
+	}
+	
+	@Bean
+	public SrsAlgorithm srsAlgorithm()
+	{
+		//TODO: The srsAlgorithm implementation shouldn't be hard-coded, but read from the properties instead
+		logger.info("Create new srsAlgorithm...");
+		return new SimpleSrsGlossAlgorithm();
 	}
 
     @Override

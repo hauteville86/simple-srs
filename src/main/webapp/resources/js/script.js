@@ -18,4 +18,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}
 	
 	document.querySelector("#go-to-next-button").addEventListener("click", changeSrsStatus);
+	
 });

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.karolcyprowski.simple.srs.business.BaseInfo;
 import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.business.ReviewSession;
+import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 
@@ -27,6 +28,11 @@ public class SimpleSrsController {
 	
 	@Autowired
 	private ReviewSession reviewSession;
+	
+	@Autowired
+	private SrsAlgorithm srsAlgorithm;
+	
+	private Iterator<Card> cardsIterator;
 	
 	@RequestMapping("/test")
 	public String showBase(Model model)
@@ -54,7 +60,6 @@ public class SimpleSrsController {
 	public String startReview(@RequestParam("id") int deckId, Model model)
 	{
 		logger.info("Entering startReview(deckid=" + deckId + ")");
-		Iterator<Card> cardsIterator;
 		if(reviewSession.isActiveSession())
 		{
 			logger.info("Review session is still active with id=" + deckId);
@@ -62,18 +67,20 @@ public class SimpleSrsController {
 		}
 		else
 		{
-			DeckInfo deckInfo = baseInfo.getDeck(deckId);
-			List<Card> cardsToReview = deckInfo.getCardsToReview();
-			cardsIterator = cardsToReview.iterator();
-			logger.info("Create new review session with id=" + deckId);
-			reviewSession.setReviewDeckId(deckId);
-			reviewSession.setReviewCardIterator(cardsIterator);
-			reviewSession.setValueChecked(false);
+			initializeDeckReview(deckId);
+//			DeckInfo deckInfo = baseInfo.getDeck(deckId);
+//			List<Card> cardsToReview = deckInfo.getCardsToReview();
+//			cardsIterator = cardsToReview.iterator();
+//			logger.info("Create new review session with id=" + deckId);
+//			reviewSession.setReviewDeckId(deckId);
+//			reviewSession.setReviewCardIterator(cardsIterator);
+//			reviewSession.setValueChecked(false);
 		}
 		if(cardsIterator.hasNext())
 		{
-			Card card = cardsIterator.next();
+			Card card = cardsIterator.next(); 
 			model.addAttribute("card", card);
+			model.addAttribute("buttons", srsAlgorithm.getButtons());
 			logger.info("Review the card with id=" + card.getId());
 			return "review";
 		}
@@ -83,5 +90,41 @@ public class SimpleSrsController {
 			reviewSession.clearReviewSession();
 			return "endofreviewsession";
 		}
+	}
+	
+	private void initializeDeckReview(int deckId)
+	{
+		DeckInfo deckInfo = baseInfo.getDeck(deckId);
+		List<Card> cardsToReview = deckInfo.getCardsToReview();
+		cardsIterator = cardsToReview.iterator();
+		logger.info("Create new review session with id=" + deckId);
+		reviewSession.setReviewDeckId(deckId);
+		reviewSession.setReviewCardIterator(cardsIterator);
+	}
+	
+	@RequestMapping("/updateCard")
+	public String updateCard(@RequestParam("cardId") int cardId, @RequestParam("srsLevel") int srsLevel, Model model)
+	{
+		//TODO: Update card operation should be implemented here
+		logger.info("Update card operation should be implemented here: updateCard()");
+		logger.info("SrsLevel for card with cardId=" + cardId + " equals to " + srsLevel);
+		if(cardsIterator == null)
+		{
+			cardsIterator = reviewSession.getReviewCardIterator(); 
+		}
+		if(cardsIterator.hasNext())
+		{
+			Card card = cardsIterator.next(); 
+			model.addAttribute("card", card);
+			model.addAttribute("buttons", srsAlgorithm.getButtons());
+			logger.info("Review the card with id=" + card.getId());
+			return "review";
+		}
+		else
+		{
+			logger.info("Card iterator is empty. Finish the review session.");
+			reviewSession.clearReviewSession();
+			return "endofreviewsession";
+		}	
 	}
 }

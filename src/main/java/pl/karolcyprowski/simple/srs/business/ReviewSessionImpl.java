@@ -14,8 +14,6 @@ public class ReviewSessionImpl implements ReviewSession {
 	
 	private Iterator<Card> reviewCardIterator;
 	
-	private boolean valueChecked;
-	
 	private int reviewCardId;
 	
 	public ReviewSessionImpl()
@@ -58,14 +56,6 @@ public class ReviewSessionImpl implements ReviewSession {
 
 	public static void setLogger(Logger logger) {
 		ReviewSessionImpl.logger = logger;
-	}
-
-	public boolean isValueChecked() {
-		return valueChecked;
-	}
-
-	public void setValueChecked(boolean valueChecked) {
-		this.valueChecked = valueChecked;
 	}
 
 	public int getReviewCardId() {

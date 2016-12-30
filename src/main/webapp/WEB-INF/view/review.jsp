@@ -18,15 +18,19 @@
 			<div id="front">${card.front}</div>
 		</tr>
 		<tr>
-			<div id="back" >${card.back}</div>
+			<div id="back">${card.back}</div>
 		</tr>
 	</table>
-		<button id="go-to-next-button" class="btn btn-primary">Check the answer</button>
-	<div class="btn-group" id="srs-buttons">			
-				<button id="srs-button-1" class="btn btn-primary">0</button>
-				<button id="srs-button-2" class="btn btn-primary">1</button>
-				<button id="srs-button-3" class="btn btn-primary">2</button>
-				<button id="srs-button-4" class="btn btn-primary">3</button>
+	<button id="go-to-next-button" class="btn btn-primary">Check
+		the answer</button>
+	<div class="btn-group" id="srs-buttons">
+		<c:forEach var="button" items="${buttons}">
+			<c:url var="updateCard" value="/updateCard">
+				<c:param name="cardId" value="${card.id}" />
+				<c:param name="srsLevel" value="${button.srsLevel}" />
+			</c:url>
+			<a href="${updateCard}" class="btn btn-primary">${button.text}</a>
+		</c:forEach>
 	</div>
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
