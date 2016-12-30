@@ -150,6 +150,33 @@ public class Card {
 		}
 		
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Card [id=");
+		builder.append(id);
+		builder.append(", deckId=");
+		builder.append(deckId);
+		builder.append(", srsStatus=");
+		builder.append(srsStatus);
+		builder.append(", front=");
+		builder.append(front);
+		builder.append(", back=");
+		builder.append(back);
+		builder.append(", comment=");
+		builder.append(comment);
+		builder.append(", created=");
+		builder.append(created);
+		builder.append(", lastUpdated=");
+		builder.append(lastUpdated);
+		builder.append(", nextRepeat=");
+		builder.append(nextRepeat);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 	
 	
 }
