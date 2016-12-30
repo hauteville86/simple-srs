@@ -1,5 +1,8 @@
 package pl.karolcyprowski.simple.srs.config;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -61,6 +64,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		//TODO: The srsAlgorithm implementation shouldn't be hard-coded, but read from the properties instead
 		logger.info("Create new srsAlgorithm...");
 		return new SimpleSrsGlossAlgorithm();
+	}
+	
+	@Bean
+	public GregorianCalendar currentDate()
+	{
+		return new GregorianCalendar();
 	}
 
     @Override

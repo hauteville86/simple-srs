@@ -51,6 +51,4 @@ public class BaseInfoImpl implements BaseInfo {
 		logger.warn("Deck with id=" + deckId + " cannot be found!");
 		return null;
 	}
-	
-	
 }

@@ -14,7 +14,7 @@ public class ReviewSessionImpl implements ReviewSession {
 	
 	private Iterator<Card> reviewCardIterator;
 	
-	private int reviewCardId;
+	private Card reviewCard;
 	
 	public ReviewSessionImpl()
 	{
@@ -42,6 +42,7 @@ public class ReviewSessionImpl implements ReviewSession {
 		logger.info("Clear review session...");
 		reviewDeckId = 0;
 		reviewCardIterator = null;
+		reviewCard = null;
 		logger.info("Review session cleared.");
 	}
 	
@@ -58,12 +59,12 @@ public class ReviewSessionImpl implements ReviewSession {
 		ReviewSessionImpl.logger = logger;
 	}
 
-	public int getReviewCardId() {
-		return reviewCardId;
+	public Card getReviewCard() {
+		return reviewCard;
 	}
 
-	public void setReviewCardId(int reviewCardId) {
-		this.reviewCardId = reviewCardId;
+	public void setReviewCard(Card reviewCard) {
+		this.reviewCard = reviewCard;
 	}
 	
 	

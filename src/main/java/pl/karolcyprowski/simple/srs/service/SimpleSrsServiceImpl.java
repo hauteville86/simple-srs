@@ -1,7 +1,9 @@
 package pl.karolcyprowski.simple.srs.service;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import pl.karolcyprowski.simple.srs.business.BaseInfo;
 import pl.karolcyprowski.simple.srs.business.BaseInfoImpl;
 import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.business.DeckInfoImpl;
+import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.dao.CardDAO;
 import pl.karolcyprowski.simple.srs.dao.DeckDAO;
 import pl.karolcyprowski.simple.srs.entities.Card;
@@ -24,6 +27,9 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	
 	@Autowired
 	private CardDAO cardDAO;
+	
+	@Autowired
+	private SrsAlgorithm srsAlgorithm;
 	
 	@Override
 	@Transactional
@@ -74,6 +80,13 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 		}
 		baseInfo.setDecks(decks);;
 		return baseInfo;	
+	}
+
+	@Override
+	@Transactional
+	public void updateCard(int cardId, int srsLevel, int srsStatus) {
+		Map<String, Object> valuesToUpdate = srsAlgorithm.generateValuesToUpdate(srsLevel, srsStatus);
+		cardDAO.updateCard(cardId, valuesToUpdate);
 	}
 	
 	

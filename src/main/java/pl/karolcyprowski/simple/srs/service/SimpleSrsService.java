@@ -20,4 +20,6 @@ public interface SimpleSrsService {
 	public DeckInfo getDeckInfo(Deck deck, int deckId);
 	
 	public BaseInfo generateBaseInfo();
+	
+	public void updateCard(int cardId, int srsLevel, int srsStatus);
 }

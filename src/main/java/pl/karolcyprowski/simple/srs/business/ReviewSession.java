@@ -18,7 +18,7 @@ public interface ReviewSession {
 	
 	public boolean isActiveSession();
 	
-	public int getReviewCardId();
+	public Card getReviewCard();
 
-	public void setReviewCardId(int reviewCardId);
+	public void setReviewCard(Card reviewCard);
 }

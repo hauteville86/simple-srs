@@ -1,6 +1,7 @@
 package pl.karolcyprowski.simple.srs.entities;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -135,6 +136,19 @@ public class Card {
 
 	public void setNextRepeat(Date nextRepeat) {
 		this.nextRepeat = nextRepeat;
+	}
+
+	public void changeWithMap(Map<String, Object> valuesToUpdate) {
+		if(valuesToUpdate.get("mode").equals("review"))
+		{
+			int newSrsStatus = (Integer)(valuesToUpdate.get("srsStatus"));
+			this.setSrsStatus(newSrsStatus);
+			Date newLastUpdate = (Date)valuesToUpdate.get("lastUpdate");
+			this.setLastUpdated(newLastUpdate);
+			Date newNextRepeat = (Date)valuesToUpdate.get("nextRepeat");
+			this.setNextRepeat(newNextRepeat);
+		}
+		
 	}
 	
 	
