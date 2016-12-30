@@ -14,6 +14,10 @@ public class ReviewSessionImpl implements ReviewSession {
 	
 	private Iterator<Card> reviewCardIterator;
 	
+	private boolean valueChecked;
+	
+	private int reviewCardId;
+	
 	public ReviewSessionImpl()
 	{
 		reviewDeckId = 0;
@@ -46,6 +50,30 @@ public class ReviewSessionImpl implements ReviewSession {
 	public boolean isActiveSession()
 	{
 		return (reviewDeckId != 0 && reviewCardIterator != null);
+	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	public static void setLogger(Logger logger) {
+		ReviewSessionImpl.logger = logger;
+	}
+
+	public boolean isValueChecked() {
+		return valueChecked;
+	}
+
+	public void setValueChecked(boolean valueChecked) {
+		this.valueChecked = valueChecked;
+	}
+
+	public int getReviewCardId() {
+		return reviewCardId;
+	}
+
+	public void setReviewCardId(int reviewCardId) {
+		this.reviewCardId = reviewCardId;
 	}
 	
 	

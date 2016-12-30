@@ -17,4 +17,12 @@ public interface ReviewSession {
 	public void clearReviewSession();
 	
 	public boolean isActiveSession();
+	
+	public boolean isValueChecked();
+
+	public void setValueChecked(boolean valueChecked);
+	
+	public int getReviewCardId();
+
+	public void setReviewCardId(int reviewCardId);
 }

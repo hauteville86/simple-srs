@@ -68,6 +68,7 @@ public class SimpleSrsController {
 			logger.info("Create new review session with id=" + deckId);
 			reviewSession.setReviewDeckId(deckId);
 			reviewSession.setReviewCardIterator(cardsIterator);
+			reviewSession.setValueChecked(false);
 		}
 		if(cardsIterator.hasNext())
 		{
@@ -82,6 +83,5 @@ public class SimpleSrsController {
 			reviewSession.clearReviewSession();
 			return "endofreviewsession";
 		}
-		
 	}
 }
