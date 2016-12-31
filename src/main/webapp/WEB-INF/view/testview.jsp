@@ -13,7 +13,10 @@
 </head>
 <body>
 	<div class="btn-group" id="testview-deck-buttons">
-		<a href="/addDeck" class="btn btn-primary">Add deck</a>
+		<c:url var="addDeck" value="/addDeck">
+						<c:param name="page" value="decklist" />
+					</c:url>
+		<a href="${addDeck}" class="btn btn-primary">Add deck</a>
 	</div>
 	<table>
 

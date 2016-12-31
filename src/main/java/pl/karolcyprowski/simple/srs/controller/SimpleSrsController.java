@@ -193,4 +193,15 @@ public class SimpleSrsController {
 		}
 		return null;
 	}
+	
+	@RequestMapping("/addDeck")
+	public String addDeck(@RequestParam("page") String page, Model model)
+	{
+		logger.warn("addDeck() option is not implemented yet");
+		if(page.equals("decklist"))
+		{
+			return showBase(model);
+		}
+		return "adddeck";
+	}
 }
