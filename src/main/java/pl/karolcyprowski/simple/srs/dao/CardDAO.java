@@ -15,4 +15,6 @@ public interface CardDAO {
 
 	public void addCard(Card card);
 
+	public void deleteCardsWithDeckId(int deckId);
+
 }

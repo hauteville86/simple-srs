@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import pl.karolcyprowski.simple.srs.business.BaseInfoImpl;
 import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.business.DeckInfoImpl;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
+import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.dao.CardDAO;
 import pl.karolcyprowski.simple.srs.dao.DeckDAO;
 import pl.karolcyprowski.simple.srs.entities.Card;
@@ -22,6 +24,8 @@ import pl.karolcyprowski.simple.srs.entities.Deck;
 @Service
 public class SimpleSrsServiceImpl implements SimpleSrsService {
 
+	static Logger logger = Logger.getLogger(SimpleSrsServiceImpl.class);
+	
 	@Autowired
 	private DeckDAO deckDAO;
 	
@@ -99,6 +103,13 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	@Transactional
 	public void addDeck(Deck deck) {
 		deckDAO.addDeck(deck);
+	}
+
+	@Override
+	@Transactional
+	public void deleteDeck(int deckId) {
+		deckDAO.deleteDeck(deckId);
+		cardDAO.deleteCardsWithDeckId(deckId);
 	}
 
 }

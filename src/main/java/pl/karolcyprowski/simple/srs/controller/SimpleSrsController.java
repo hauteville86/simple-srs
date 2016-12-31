@@ -179,4 +179,18 @@ public class SimpleSrsController {
 			return "endofreviewsession";
 		}	
 	}
+	
+	@RequestMapping("/deleteDeck")
+	public String deleteDeck(@RequestParam("id") int deckId, @RequestParam("page") String page, Model model)
+	{
+		simpleSrsService.deleteDeck(deckId);
+		logger.info("Updating base...");
+		baseInfo = simpleSrsService.generateBaseInfo();
+		logger.info("Base has been succesfully updated...");
+		if(page.equals("decklist"))
+		{
+			return showBase(model);
+		}
+		return null;
+	}
 }
