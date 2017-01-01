@@ -5,9 +5,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add deck</title>
 </head>
 <body>
+	<form:form action="saveDeck" modelAttribute="deck" method="POST">	
+			<table>
+				<tbody>
+					<tr>
+						<td><label>Name:</label></td>
+						<td><form:input path="name" /></td>
+					</tr>
 
+					<tr>
+						<td><label>Language:</label></td>
+						<td><form:input path="language" /></td>
+					</tr>
+
+					<tr>
+						<td><label>Comment:</label></td>
+						<td><form:input path="comment" /></td>
+					</tr>
+					
+					<tr>
+						<td><label></label></td>
+						<td><input type="submit" value="Save" class="save" /></td>
+					</tr>
+					
+				</tbody>
+			</table>
+		</form:form>
 </body>
 </html>

@@ -44,7 +44,9 @@ public class SimpleSrsController {
 //		createDecksForTestPurposes(true);
 		logger.info("Entering showBase()");
 		List<DeckInfo> decks = baseInfo.getDecks();
+		Deck deck = new Deck();
 		model.addAttribute("decks", decks);
+		model.addAttribute("deck", deck);
 		return "testview";
 	}
 	
@@ -195,13 +197,11 @@ public class SimpleSrsController {
 	}
 	
 	@RequestMapping("/addDeck")
-	public String addDeck(@RequestParam("page") String page, Model model)
+	public String addDeck(@RequestParam("deck") Deck deck, Model model)
 	{
-		logger.warn("addDeck() option is not implemented yet");
-		if(page.equals("decklist"))
-		{
-			return showBase(model);
-		}
+		logger.info(deck);
 		return "adddeck";
 	}
+	
+	
 }
