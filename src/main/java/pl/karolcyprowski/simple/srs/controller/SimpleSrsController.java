@@ -41,24 +41,41 @@ public class SimpleSrsController {
 	@RequestMapping("/test")
 	public String showBase(Model model)
 	{
-//		createCardsForTestPurposes();
+//		createDecksForTestPurposes(true);
 		logger.info("Entering showBase()");
 		List<DeckInfo> decks = baseInfo.getDecks();
+		Deck deck = new Deck();
 		model.addAttribute("decks", decks);
+		model.addAttribute("deck", deck);
 		return "testview";
 	}
 	
-	private void createCardsForTestPurposes() {
+	private void createCardsForTestPurposes(int deckId) {
 		for(int i = 0; i < 50; i++)
 		{
-			logger.info("Add new card with i=" + i);
+			logger.info("Add new card for deckid=" + deckId + " with i=" + i);
 			Card card = new Card();
 			card.setFront("Front " + i);
 			card.setBack("Back " + i);
-			card.setDeckId(1);
+			card.setDeckId(deckId);
 			simpleSrsService.addCard(card);
+		}	
+	}
+	
+	private void createDecksForTestPurposes(boolean addCards)
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			Deck deck = new Deck();
+			deck.setName("Name " + i);
+			deck.setLanguage("TestLanguage");
+			simpleSrsService.addDeck(deck);
+			if(addCards)
+			{
+				createCardsForTestPurposes(i);
+			}
 		}
-		
+		baseInfo = simpleSrsService.generateBaseInfo();
 	}
 
 	@RequestMapping("/showDeck")
@@ -164,4 +181,27 @@ public class SimpleSrsController {
 			return "endofreviewsession";
 		}	
 	}
+	
+	@RequestMapping("/deleteDeck")
+	public String deleteDeck(@RequestParam("id") int deckId, @RequestParam("page") String page, Model model)
+	{
+		simpleSrsService.deleteDeck(deckId);
+		logger.info("Updating base...");
+		baseInfo = simpleSrsService.generateBaseInfo();
+		logger.info("Base has been succesfully updated...");
+		if(page.equals("decklist"))
+		{
+			return showBase(model);
+		}
+		return null;
+	}
+	
+	@RequestMapping("/addDeck")
+	public String addDeck(@RequestParam("deck") Deck deck, Model model)
+	{
+		logger.info(deck);
+		return "adddeck";
+	}
+	
+	
 }

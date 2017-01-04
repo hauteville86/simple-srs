@@ -9,4 +9,8 @@ public interface DeckDAO {
 	public List<Deck> getDecks();
 
 	public Deck getDeck(int deckId);
+
+	public void addDeck(Deck deck);
+
+	public void deleteDeck(int deckId);
 }

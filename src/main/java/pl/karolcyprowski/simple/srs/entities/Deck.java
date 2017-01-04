@@ -39,7 +39,8 @@ public class Deck {
 	
 	public Deck()
 	{
-		
+		this.created = new Date();
+		this.lastUpdated = new Date();
 	}
 
 	public Deck(String name, String language, String comment, Date created, Date lastUpdated) {
