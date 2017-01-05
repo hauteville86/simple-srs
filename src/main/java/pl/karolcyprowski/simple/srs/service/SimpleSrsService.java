@@ -6,6 +6,7 @@ import pl.karolcyprowski.simple.srs.business.BaseInfo;
 import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
+import pl.karolcyprowski.simple.srs.entities.User;
 
 public interface SimpleSrsService {
 
@@ -28,4 +29,6 @@ public interface SimpleSrsService {
 	public void addDeck(Deck deck);
 
 	public void deleteDeck(int deckId);
+	
+	public void addUser(User user);
 }

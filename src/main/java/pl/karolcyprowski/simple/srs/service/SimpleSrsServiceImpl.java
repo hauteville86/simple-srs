@@ -18,8 +18,10 @@ import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.dao.CardDAO;
 import pl.karolcyprowski.simple.srs.dao.DeckDAO;
+import pl.karolcyprowski.simple.srs.dao.UserDAO;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
+import pl.karolcyprowski.simple.srs.entities.User;
 
 @Service
 public class SimpleSrsServiceImpl implements SimpleSrsService {
@@ -31,6 +33,9 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	
 	@Autowired
 	private CardDAO cardDAO;
+	
+	@Autowired
+	private UserDAO userDAO;
 	
 	@Autowired
 	private SrsAlgorithm srsAlgorithm;
@@ -110,6 +115,13 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	public void deleteDeck(int deckId) {
 		deckDAO.deleteDeck(deckId);
 		cardDAO.deleteCardsWithDeckId(deckId);
+	}
+	
+	@Override
+	@Transactional
+	public void addUser(User user)
+	{
+		userDAO.addUser(user);
 	}
 
 }
