@@ -11,7 +11,7 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 	{
 		http
 	      .authorizeRequests()
-	        .antMatchers("/signup","/about").permitAll() // #4
+	        .antMatchers("/signup","/about", "/resources/**").permitAll() // #4
 	        .antMatchers("/admin/**").hasRole("ADMIN") // #6
 	        .anyRequest().authenticated() // 7
 	        .and()

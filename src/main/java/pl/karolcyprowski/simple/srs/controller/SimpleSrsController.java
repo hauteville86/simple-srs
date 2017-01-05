@@ -203,5 +203,11 @@ public class SimpleSrsController {
 		return "adddeck";
 	}
 	
+	@RequestMapping("/login")
+	public String goToLogin()
+	{
+		return "login";
+	}
+	
 	
 }
