@@ -1,6 +1,8 @@
 package pl.karolcyprowski.simple.srs.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -17,6 +19,18 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 	        .and()
 	    .formLogin()  // #8
 	        .loginPage("/login") // #9
-	        .permitAll(); // #5
+	        .permitAll()
+	        .and()
+	    .logout()
+	    	.permitAll(); // #5
+		
+		http.csrf().disable();
 	}
+	
+	@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+            .inMemoryAuthentication()
+                .withUser("user").password("password").roles("USER");
+    }
 }
