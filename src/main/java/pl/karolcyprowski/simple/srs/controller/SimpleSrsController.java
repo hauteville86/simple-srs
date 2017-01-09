@@ -16,6 +16,7 @@ import pl.karolcyprowski.simple.srs.business.ReviewSession;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
+import pl.karolcyprowski.simple.srs.entities.User;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Controller

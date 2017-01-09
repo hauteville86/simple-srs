@@ -39,7 +39,7 @@
 				class="sr-only">Password</label><input type="password" class="form-control"
 				placeholder="Password"
 				name="password" required/></div> 
-			<div class="checkbox">
+			<div class="checkbox" render="false">
 				<label> <input type="checkbox" value="remember-me">
 					Remember me
 				</label>
@@ -47,6 +47,8 @@
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Log
 				in</button>
 		</form>
+		
+		
 
 	</div>
 	<!-- /container -->

@@ -1,14 +1,24 @@
 package pl.karolcyprowski.simple.srs.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 
+	
+	@Autowired
+	private DataSource dataSource;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		http
@@ -29,6 +39,12 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+		auth.jdbcAuthentication().dataSource(dataSource)
+			.passwordEncoder(passwordEncoder)
+			.usersByUsernameQuery("SELECT * FROM simplesrs.user WHERE username = ?")
+			.authoritiesByUsernameQuery("SELECT authority FROM simplesrs.authorities WHERE username = ?");
+		
         auth
             .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
