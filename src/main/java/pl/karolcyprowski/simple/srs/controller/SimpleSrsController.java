@@ -199,6 +199,15 @@ public class SimpleSrsController {
 		return null;
 	}
 	
+	@PostMapping("/addCard")
+	public String addCard(@RequestParam("card") Card card, Model model)
+	{
+		logger.info(card);
+		simpleSrsService.addCard(card);
+		updateBaseInfo();
+		return null;
+	}
+	
 	@PostMapping("/addDeck")
 	public String addDeck(@RequestParam("deck") Deck deck, Model model)
 	{
