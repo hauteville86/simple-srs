@@ -7,6 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -188,8 +191,7 @@ public class SimpleSrsController {
 	{
 		simpleSrsService.deleteDeck(deckId);
 		logger.info("Updating base...");
-		baseInfo = simpleSrsService.generateBaseInfo();
-		logger.info("Base has been succesfully updated...");
+		updateBaseInfo();
 		if(page.equals("decklist"))
 		{
 			return showBase(model);
@@ -197,11 +199,13 @@ public class SimpleSrsController {
 		return null;
 	}
 	
-	@RequestMapping("/addDeck")
+	@PostMapping("/addDeck")
 	public String addDeck(@RequestParam("deck") Deck deck, Model model)
 	{
 		logger.info(deck);
-		return "adddeck";
+		simpleSrsService.addDeck(deck);
+		updateBaseInfo();
+		return null;
 	}
 	
 	@RequestMapping("/login")
@@ -211,9 +215,24 @@ public class SimpleSrsController {
 	}
 	
 	@RequestMapping("/signup")
-	public String goToSignUp()
+	public String goToSignUp(Model model)
 	{
+		model.addAttribute("user", new User());
 		return "signup";
+	}
+	
+	@RequestMapping("/adduser")
+	public String addUser(User user)
+	{
+		logger.info(user);
+		simpleSrsService.addUser(user);
+		return ":redirect/login";
+	}
+	
+	private void updateBaseInfo()
+	{
+		baseInfo = simpleSrsService.generateBaseInfo();
+		logger.info("Base has been succesfully updated...");
 	}
 	
 	

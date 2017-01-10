@@ -32,17 +32,17 @@
 				<tbody>
 					<tr>
 						<td><label>Name:</label></td>
-						<td><form:input path="name" /></td>
+						<td><form:input path="name" type="text" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Language:</label></td>
-						<td><form:input path="language" /></td>
+						<td><form:input path="language" type="text" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Comment:</label></td>
-						<td><form:input path="comment" /></td>
+						<td><form:input path="comment" type="text" /></td>
 					</tr>
 					
 					<tr>

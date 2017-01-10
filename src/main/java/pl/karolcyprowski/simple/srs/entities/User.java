@@ -24,7 +24,7 @@ public class User {
 	
 	public User()
 	{
-		
+		this.authority = "USER";
 	}
 
 	public User(String username, String password, String authority, boolean enabled) {

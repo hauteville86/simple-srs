@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
@@ -28,7 +29,7 @@
 
 	<div class="container">
 		<!-- SEPARATE ACTION MUST BE IMPLEMENTED -->
-		<form class="form-signin" th:action=""
+		<form:form class="form-signin" action="/adduser" modelAttribute="user"
 			method='POST'>
 			<h2 class="form-signin-heading">Please sign up</h2>
 			<div><label for="inputEmail" class="sr-only">Username </label><input
@@ -39,13 +40,8 @@
 				class="sr-only">Password</label><input type="password" class="form-control"
 				placeholder="Password"
 				name="password" required/></div> 
-			<div><label for="repeatPassword"
-				class="sr-only">Repeat password</label><input type="password" class="form-control"
-				placeholder="Repeat password"
-				name="password" required/></div> 
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Log
-				in</button>
-		</form>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+		</form:form>
 	</div>
 	<!-- /container -->
 
