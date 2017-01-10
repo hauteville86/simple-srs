@@ -1,6 +1,5 @@
 package pl.karolcyprowski.simple.srs.config;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.karolcyprowski.simple.srs.business.BaseInfo;
-import pl.karolcyprowski.simple.srs.business.BaseInfoImpl;
 import pl.karolcyprowski.simple.srs.business.ReviewSession;
 import pl.karolcyprowski.simple.srs.business.ReviewSessionImpl;
 import pl.karolcyprowski.simple.srs.business.SimpleSrsGlossAlgorithm;

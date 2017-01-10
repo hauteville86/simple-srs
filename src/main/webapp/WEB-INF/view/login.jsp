@@ -47,6 +47,7 @@
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Log
 				in</button>
 		</form>
+		<a href="/signup">Sign up</a>
 		
 		
 

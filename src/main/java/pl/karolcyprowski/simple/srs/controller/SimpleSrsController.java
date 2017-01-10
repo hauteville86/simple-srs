@@ -210,5 +210,11 @@ public class SimpleSrsController {
 		return "login";
 	}
 	
+	@RequestMapping("/signup")
+	public String goToSignUp()
+	{
+		return "signup";
+	}
+	
 	
 }
