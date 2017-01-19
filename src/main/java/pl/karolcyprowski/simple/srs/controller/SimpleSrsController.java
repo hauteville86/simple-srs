@@ -205,7 +205,7 @@ public class SimpleSrsController {
 		logger.info(card);
 		simpleSrsService.addCard(card);
 		updateBaseInfo();
-		return ":redirect/test";
+		return "deck";
 	}
 	
 	@PostMapping("/addDeck")
