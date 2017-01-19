@@ -19,3 +19,8 @@
 .card-back-text {
 	text-align: center;
 }
+
+#add-card-link {
+	cursor: pointer;
+	cursor: hand;
+}
