@@ -2,8 +2,11 @@
  * 
  */
 
-// Get the modal
-var modal = document.getElementById('modal-content');
+// Get the modal for adding new card
+var modal = document.getElementById('modal-addcard-content');
+
+// Get the modal for statistics
+var modalStatistics = document.getElementById('modal-statistics-content');
 
 // Get the button that opens the modal
 var add_card_link = document.querySelector("#add-card-link");
@@ -26,4 +29,11 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+    if (event.target == modalStatistics){
+    	modalStatistics.style.display = "none";
+    }
+    
 }
+
+
+

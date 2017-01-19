@@ -24,12 +24,14 @@
 
 		<div id="add-card-link">Add Card</div>
 		<div> | </div>
+		<div id="statistics-link">Statistics</div>
+		<div> | </div>
 		<c:url var="reviewLink" value="/startReview">
 			<c:param name="id" value="${deck.id}" />
 		</c:url>
 		<a href="${reviewLink}">Review</a>
 	</table>
-	<div class="modal-content" id="modal-content">
+	<div class="modal-content modal-addcard-content" id="modal-content">
 		<div class="modal-header">
 			<span class="close">&times;</span>
 			<h2>Add new card</h2>
@@ -61,6 +63,15 @@
 					</tbody>
 				</table>
 			</form:form>
+		</div>
+	</div>
+	<div class="modal-content modal-statistics-content" id="modal-statistics-content">
+		<div class="modal-statistics-header">
+			<span class="close">&times;</span>
+			<h2>Statistics</h2>
+		</div>
+		<div class="modal-statistics-body">
+			
 		</div>
 	</div>
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
