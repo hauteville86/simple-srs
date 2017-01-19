@@ -200,21 +200,21 @@ public class SimpleSrsController {
 	}
 	
 	@PostMapping("/addCard")
-	public String addCard(@RequestParam("card") Card card, Model model)
+	public String addCard(@ModelAttribute("card") Card card, Model model)
 	{
 		logger.info(card);
 		simpleSrsService.addCard(card);
 		updateBaseInfo();
-		return null;
+		return ":redirect/test";
 	}
 	
 	@PostMapping("/addDeck")
-	public String addDeck(@RequestParam("deck") Deck deck, Model model)
+	public String addDeck(@ModelAttribute("deck") Deck deck, Model model)
 	{
 		logger.info(deck);
 		simpleSrsService.addDeck(deck);
 		updateBaseInfo();
-		return null;
+		return showBase(model);
 	}
 	
 	@RequestMapping("/login")

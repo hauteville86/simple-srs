@@ -15,10 +15,10 @@
 	<c:set var="answerChecked" value="false" />
 	<table>
 		<tr>
-			<div id="front">${card.front}</div>
+			<h4><div id="front" class="card-front-text">${card.front}</div></h4>
 		</tr>
 		<tr>
-			<div id="back">${card.back}</div>
+			<h4><div id="back" class="card-back-text">${card.back}</div></h4>
 		</tr>
 	</table>
 	<button id="go-to-next-button" class="btn btn-primary">Check

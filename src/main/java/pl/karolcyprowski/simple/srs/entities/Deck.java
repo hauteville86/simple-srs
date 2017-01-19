@@ -51,6 +51,14 @@ public class Deck {
 		this.created = created;
 		this.lastUpdated = lastUpdated;
 	}
+	
+	public Deck(String name, String language, String comment)
+	{
+		super();
+		this.name = name;
+		this.language = language;
+		this.comment = comment;
+	}
 
 	public int getId() {
 		return id;

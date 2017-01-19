@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +18,7 @@
 		<c:url var="addDeck" value="/addDeck">
 			<c:param name="page" value="decklist" />
 		</c:url>
-		<div id="add-deck-btn" class="btn btn-primary">
-			Add deck
-		</div>
+		<div id="add-deck-btn" class="btn btn-primary">Add deck</div>
 		<!-- Modal content -->
 		<div class="modal-content" id="modal-content">
 			<div class="modal-header">
@@ -27,32 +26,32 @@
 				<h2>Add new deck</h2>
 			</div>
 			<div class="modal-body">
-				<form:form action="/addDeck" modelAttribute="deck" method="POST">	
-			<table>
-				<tbody>
-					<tr>
-						<td><label>Name:</label></td>
-						<td><form:input path="name" type="text" /></td>
-					</tr>
+				<form:form action="addDeck" modelAttribute="deck" method="POST">
+					<table>
+						<tbody>
+							<tr>
+								<td><label>Name:</label></td>
+								<td><form:input path="name" type="text" /></td>
+							</tr>
 
-					<tr>
-						<td><label>Language:</label></td>
-						<td><form:input path="language" type="text" /></td>
-					</tr>
+							<tr>
+								<td><label>Language:</label></td>
+								<td><form:input path="language" type="text" /></td>
+							</tr>
 
-					<tr>
-						<td><label>Comment:</label></td>
-						<td><form:input path="comment" type="text" /></td>
-					</tr>
-					
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Save" class="save" /></td>
-					</tr>
-					
-				</tbody>
-			</table>
-		</form:form>
+							<tr>
+								<td><label>Comment:</label></td>
+								<td><form:input path="comment" type="text" /></td>
+							</tr>
+
+							<tr>
+								<td><label></label></td>
+								<td><input type="submit" value="Save" class="save" /></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</form:form>
 			</div>
 		</div>
 	</div>

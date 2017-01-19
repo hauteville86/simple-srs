@@ -11,3 +11,11 @@
 #srs-buttons {
 	display: none;
 }
+
+.card-front-text {
+	text-align: center;
+}
+
+.card-back-text {
+	text-align: center;
+}
