@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,8 @@
 
 
 
-		<a id="add-card-link">Add Card</a>
-		<a> | </a>
+		<div id="add-card-link">Add Card</div>
+		<div> | </div>
 		<c:url var="reviewLink" value="/startReview">
 			<c:param name="id" value="${deck.id}" />
 		</c:url>
@@ -50,11 +51,6 @@
 						<tr>
 							<td><label>Comment:</label></td>
 							<td><form:input path="comment" type="text" /></td>
-						</tr>
-						
-						<tr>
-							<td><label>Deck Id:</label></td>
-							<td><form:input path="deckId" type="text" value="${deck.id}" readonly="true"  /></td>
 						</tr>
 
 						<tr>

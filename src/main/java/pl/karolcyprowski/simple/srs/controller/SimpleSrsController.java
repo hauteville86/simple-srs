@@ -89,6 +89,8 @@ public class SimpleSrsController {
 		DeckInfo deckInfo = baseInfo.getDeck(deckId);
 		List<Card> cards = deckInfo.getCards();
 		Deck deck = deckInfo.getDeck();
+		Card card = new Card(deckId);
+		model.addAttribute("card", card);
 		model.addAttribute("cards", cards);
 		model.addAttribute("deck", deck);
 		model.addAttribute("deckInfo", deckInfo);	

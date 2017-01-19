@@ -66,6 +66,12 @@ public class Card {
 		this.lastUpdated = lastUpdated;
 		this.nextRepeat = nextRepeat;
 	}
+	
+	public Card(int deckId)
+	{
+		super();
+		this.deckId = deckId;
+	}
 
 	public int getId() {
 		return id;
