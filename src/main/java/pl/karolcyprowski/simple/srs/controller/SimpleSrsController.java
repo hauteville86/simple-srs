@@ -17,6 +17,8 @@ import pl.karolcyprowski.simple.srs.business.BaseInfo;
 import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.business.ReviewSession;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
+import pl.karolcyprowski.simple.srs.business.StatisticsUtil;
+import pl.karolcyprowski.simple.srs.business.StatisticsUtilImpl;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 import pl.karolcyprowski.simple.srs.entities.User;
@@ -90,6 +92,8 @@ public class SimpleSrsController {
 		List<Card> cards = deckInfo.getCards();
 		Deck deck = deckInfo.getDeck();
 		Card card = new Card(deckId);
+		StatisticsUtil statisticsUtil = new StatisticsUtilImpl(deck);
+		model.addAttribute("statisticsUtil", statisticsUtil);
 		model.addAttribute("card", card);
 		model.addAttribute("cards", cards);
 		model.addAttribute("deck", deck);
