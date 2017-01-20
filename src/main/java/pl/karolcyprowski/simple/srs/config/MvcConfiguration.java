@@ -21,6 +21,8 @@ import pl.karolcyprowski.simple.srs.business.ReviewSessionImpl;
 import pl.karolcyprowski.simple.srs.business.SimpleSrsGlossAlgorithm;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
+import pl.karolcyprowski.simple.srs.options.Options;
+import pl.karolcyprowski.simple.srs.options.OptionsImpl;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Configuration
@@ -76,6 +78,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public PasswordEncoder passwordEncoder()
 	{
 		return new StandardPasswordEncoder();
+	}
+	
+	@Bean
+	public Options options()
+	{
+		return new OptionsImpl();
 	}
 
     @Override
