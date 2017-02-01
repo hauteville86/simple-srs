@@ -20,6 +20,9 @@ public class SchedulerAction {
 	@Column(name="id")
 	private int id;
 	
+	@Column(name="userid")
+	private int userid;
+	
 	@Column(name="utilityid")
 	private int utilityId;
 	
@@ -38,8 +41,9 @@ public class SchedulerAction {
 		
 	}
 	
-	public SchedulerAction(int utilityId, Date date, String action, int time)
+	public SchedulerAction(int userId, int utilityId, Date date, String action, int time)
 	{
+		this.userid = userId;
 		this.utilityId = utilityId;
 		this.date = date;
 		this.action = action;
@@ -84,6 +88,33 @@ public class SchedulerAction {
 
 	public void setUtilityId(int utilityId) {
 		this.utilityId = utilityId;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("SchedulerAction [id=");
+		builder.append(id);
+		builder.append(", userid=");
+		builder.append(userid);
+		builder.append(", utilityId=");
+		builder.append(utilityId);
+		builder.append(", date=");
+		builder.append(date);
+		builder.append(", action=");
+		builder.append(action);
+		builder.append(", time=");
+		builder.append(time);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	
