@@ -44,7 +44,7 @@ public class MainSchedulerImpl implements MainScheduler{
 			{
 				if(authentication != null)
 				{
-					String currentName = authentication.getName();
+					String username = authentication.getName();
 				}
 			}
 		}
