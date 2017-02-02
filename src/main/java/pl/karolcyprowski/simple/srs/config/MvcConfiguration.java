@@ -97,8 +97,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if(!(authentication instanceof AnonymousAuthenticationToken))
 		{
-			String currentName = authentication.getName();
-			return new MainSchedulerImpl();
+			if(authentication != null)
+			{
+				String currentName = authentication.getName();
+				return new MainSchedulerImpl();
+			}
 		}
 		return new MainSchedulerImpl();
 		
