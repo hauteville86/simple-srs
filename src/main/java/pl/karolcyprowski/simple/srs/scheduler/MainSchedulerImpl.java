@@ -14,10 +14,17 @@ public class MainSchedulerImpl implements MainScheduler{
 	
 	public MainSchedulerImpl()
 	{
-		loadScheduleUtilitiesForBackend();
+		if(userId == null)
+		{
+			loadScheduleUtilitiesForBackend();
+		}		
 	}
 
 	public Map<String, ScheduleUtility> getScheduleUtilities() {
+		if(userId == null)
+		{
+			loadScheduleUtilitiesForBackend();
+		}
 		return scheduleUtilities;
 	}
 
@@ -32,7 +39,7 @@ public class MainSchedulerImpl implements MainScheduler{
 	
 	private void loadScheduleUtilitiesForBackend()
 	{
-		
+		userId = getUserId();
 	}
 
 	public String getUserId() {
@@ -44,7 +51,7 @@ public class MainSchedulerImpl implements MainScheduler{
 			{
 				if(authentication != null)
 				{
-					String username = authentication.getName();
+					userId = authentication.getName();
 				}
 			}
 		}

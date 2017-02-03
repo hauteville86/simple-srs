@@ -1,7 +1,10 @@
 package pl.karolcyprowski.simple.srs.controller;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,8 @@ import pl.karolcyprowski.simple.srs.business.StatisticsUtilImpl;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 import pl.karolcyprowski.simple.srs.entities.User;
+import pl.karolcyprowski.simple.srs.scheduler.MainScheduler;
+import pl.karolcyprowski.simple.srs.scheduler.ScheduleUtility;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Controller
@@ -41,6 +46,9 @@ public class SimpleSrsController {
 	
 	@Autowired
 	private SrsAlgorithm srsAlgorithm;
+	
+	@Autowired
+	private MainScheduler mainScheduler;
 	
 	private Iterator<Card> cardsIterator;
 	
@@ -242,6 +250,26 @@ public class SimpleSrsController {
 		logger.info(user);
 		simpleSrsService.addUser(user);
 		return ":redirect/login";
+	}
+	
+	@RequestMapping("/scheduler")
+	public String scheduler(Model model)
+	{
+		Map<String, ScheduleUtility> scheduleUtilitiesMap = mainScheduler.getScheduleUtilities();
+		List<ScheduleUtility> scheduleUtilities = new LinkedList<ScheduleUtility>();
+		try{
+			for(Entry<String, ScheduleUtility> scheduleUtilityEntry : scheduleUtilitiesMap.entrySet())
+			{
+				ScheduleUtility scheduleUtility = scheduleUtilityEntry.getValue();
+				scheduleUtilities.add(scheduleUtility);
+			}
+		}
+		catch(NullPointerException e){
+			String errorMessage = e.getMessage();
+			logger.error(errorMessage);
+		}
+		model.addAttribute("utilities", scheduleUtilities);
+		return "scheduler";
 	}
 	
 	private void updateBaseInfo()

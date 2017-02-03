@@ -10,6 +10,7 @@
 </head>
 <body>
 	<a href="/test">Go to decklist</a>
+	<a href="/scheduler">Go to Schedule Utilities</a>
 
 </body>
 </html>
