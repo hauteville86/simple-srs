@@ -1,14 +1,17 @@
 package pl.karolcyprowski.simple.srs.scheduler;
 
+import java.util.List;
 import java.util.Map;
+
+import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 
 public interface MainScheduler {
 
-	public Map<String, ScheduleUtility> getScheduleUtilities();
+	public List<SchedulerUtility> getSchedulerUtilities();
 
-	public void setScheduleUtilities(Map<String, ScheduleUtility> scheduleUtilities);
+	public void setSchedulerUtilities(List<SchedulerUtility> scheduleUtilities);
 	
-	public ScheduleUtility getScheduleUtilityByName(String name);
+//	public SchedulerUtility getSchedulerUtilityByName(String name);
 	
 	public String getUserId();
 

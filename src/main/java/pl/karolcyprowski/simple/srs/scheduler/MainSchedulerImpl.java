@@ -1,14 +1,22 @@
 package pl.karolcyprowski.simple.srs.scheduler;
 
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
+import pl.karolcyprowski.simple.srs.scheduler.service.SchedulerService;
+
 public class MainSchedulerImpl implements MainScheduler{
 
-	private Map<String, ScheduleUtility> scheduleUtilities;
+	@Autowired
+	private SchedulerService schedulerService;
+	
+	private List<SchedulerUtility> schedulerUtilities;
 	
 	private String userId;
 	
@@ -20,26 +28,27 @@ public class MainSchedulerImpl implements MainScheduler{
 		}		
 	}
 
-	public Map<String, ScheduleUtility> getScheduleUtilities() {
+	public List<SchedulerUtility> getSchedulerUtilities() {
 		if(userId == null)
 		{
 			loadScheduleUtilitiesForBackend();
 		}
-		return scheduleUtilities;
+		return schedulerUtilities;
 	}
 
-	public void setScheduleUtilities(Map<String, ScheduleUtility> scheduleUtilities) {
-		this.scheduleUtilities = scheduleUtilities;
+	public void setSchedulerUtilities(List<SchedulerUtility> schedulerUtilities) {
+		this.schedulerUtilities = schedulerUtilities;
 	}
 	
-	public ScheduleUtility getScheduleUtilityByName(String name)
-	{
-		return scheduleUtilities.get(name);
-	}
+//	public ScheduleUtility getScheduleUtilityByName(String name)
+//	{
+//		return schedulerUtilities.get(name);
+//	}
 	
 	private void loadScheduleUtilitiesForBackend()
 	{
 		userId = getUserId();
+		schedulerUtilities = schedulerService.loadScheduleUtilitiesFromBackend(userId); 
 	}
 
 	public String getUserId() {
