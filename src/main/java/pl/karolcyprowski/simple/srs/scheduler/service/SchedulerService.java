@@ -13,5 +13,10 @@ public interface SchedulerService {
 	
 	public void addSchedulerAction(SchedulerAction newAction);
 
+	/**
+	 * 
+	 * @param userId
+	 * @return empty list if no utilities are found.
+	 */
 	public List<SchedulerUtility> loadScheduleUtilitiesFromBackend(String userId);
 }

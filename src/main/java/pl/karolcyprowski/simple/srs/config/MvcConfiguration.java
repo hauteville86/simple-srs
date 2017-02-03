@@ -28,6 +28,8 @@ import pl.karolcyprowski.simple.srs.options.Options;
 import pl.karolcyprowski.simple.srs.options.OptionsImpl;
 import pl.karolcyprowski.simple.srs.scheduler.MainScheduler;
 import pl.karolcyprowski.simple.srs.scheduler.MainSchedulerImpl;
+import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactory;
+import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactoryImpl;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Configuration
@@ -104,7 +106,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 			}
 		}
 		return new MainSchedulerImpl();
-		
+	}
+	
+	@Bean
+	public UtilityFactory utilityFactory()
+	{
+		return new UtilityFactoryImpl();
 	}
 
     @Override

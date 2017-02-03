@@ -7,9 +7,9 @@ import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 
 public interface MainScheduler {
 
-	public List<SchedulerUtility> getSchedulerUtilities();
+	public List<ScheduleUtility> getScheduleUtilities();
 
-	public void setSchedulerUtilities(List<SchedulerUtility> scheduleUtilities);
+	public void setScheduleUtilities(List<ScheduleUtility> scheduleUtilities);
 	
 //	public SchedulerUtility getSchedulerUtilityByName(String name);
 	

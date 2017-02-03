@@ -1,5 +1,6 @@
 package pl.karolcyprowski.simple.srs.scheduler;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class MainSchedulerImpl implements MainScheduler{
 	@Autowired
 	private SchedulerService schedulerService;
 	
-	private List<SchedulerUtility> schedulerUtilities;
+	private List<ScheduleUtility> scheduleUtilities;
 	
 	private String userId;
 	
@@ -28,16 +29,16 @@ public class MainSchedulerImpl implements MainScheduler{
 		}		
 	}
 
-	public List<SchedulerUtility> getSchedulerUtilities() {
+	public List<ScheduleUtility> getScheduleUtilities() {
 		if(userId == null)
 		{
 			loadScheduleUtilitiesForBackend();
 		}
-		return schedulerUtilities;
+		return scheduleUtilities;
 	}
 
-	public void setSchedulerUtilities(List<SchedulerUtility> schedulerUtilities) {
-		this.schedulerUtilities = schedulerUtilities;
+	public void setScheduleUtilities(List<ScheduleUtility> scheduleUtilities) {
+		this.scheduleUtilities = scheduleUtilities;
 	}
 	
 //	public ScheduleUtility getScheduleUtilityByName(String name)
@@ -48,7 +49,14 @@ public class MainSchedulerImpl implements MainScheduler{
 	private void loadScheduleUtilitiesForBackend()
 	{
 		userId = getUserId();
-		schedulerUtilities = schedulerService.loadScheduleUtilitiesFromBackend(userId); 
+		List<SchedulerUtility> scheduleUtilitiesFromBackend = schedulerService.loadScheduleUtilitiesFromBackend(userId);
+		Iterator<SchedulerUtility> utilitiesFromBackend = scheduleUtilitiesFromBackend.iterator();
+		while(utilitiesFromBackend.hasNext())
+		{
+			SchedulerUtility utilityFromBackend = utilitiesFromBackend.next();
+			ScheduleUtility utility = 
+		}
+		
 	}
 
 	public String getUserId() {

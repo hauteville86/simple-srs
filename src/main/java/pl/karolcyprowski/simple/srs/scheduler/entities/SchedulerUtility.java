@@ -18,6 +18,9 @@ public class SchedulerUtility {
 	
 	@Column(name="name")
 	private String name;
+	
+	@Column(name="userid")
+	private String userId;
 
 	public SchedulerUtility()
 	{
@@ -43,6 +46,14 @@ public class SchedulerUtility {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	
