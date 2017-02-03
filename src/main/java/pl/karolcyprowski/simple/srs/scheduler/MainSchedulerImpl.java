@@ -1,6 +1,7 @@
 package pl.karolcyprowski.simple.srs.scheduler;
 
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +12,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 import pl.karolcyprowski.simple.srs.scheduler.service.SchedulerService;
+import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactory;
 
 public class MainSchedulerImpl implements MainScheduler{
 
 	@Autowired
 	private SchedulerService schedulerService;
+	
+	@Autowired
+	private UtilityFactory utilityFactory;
 	
 	private List<ScheduleUtility> scheduleUtilities;
 	
@@ -49,14 +54,15 @@ public class MainSchedulerImpl implements MainScheduler{
 	private void loadScheduleUtilitiesForBackend()
 	{
 		userId = getUserId();
+		scheduleUtilities = new LinkedList<ScheduleUtility>();
 		List<SchedulerUtility> scheduleUtilitiesFromBackend = schedulerService.loadScheduleUtilitiesFromBackend(userId);
 		Iterator<SchedulerUtility> utilitiesFromBackend = scheduleUtilitiesFromBackend.iterator();
 		while(utilitiesFromBackend.hasNext())
 		{
 			SchedulerUtility utilityFromBackend = utilitiesFromBackend.next();
-			ScheduleUtility utility = 
+			ScheduleUtility utility = utilityFactory.createUtilityFromBackendData(utilityFromBackend);
+			scheduleUtilities.add(utility);
 		}
-		
 	}
 
 	public String getUserId() {
