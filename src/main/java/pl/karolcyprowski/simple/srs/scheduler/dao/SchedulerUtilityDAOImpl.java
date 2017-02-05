@@ -25,7 +25,7 @@ public class SchedulerUtilityDAOImpl implements SchedulerUtilityDAO {
 	public List<SchedulerUtility> getScheduleUtilities(String userId) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		Query query = currentSession.createQuery("from SchedulerUtility where userid=" + userId);
+		Query query = currentSession.createQuery("from SchedulerUtility where user=" + userId);
 
 		// get the result list
 		List<SchedulerUtility> schedulerActions = query.list();

@@ -20,7 +20,7 @@ public class SchedulerActionDAOImpl implements SchedulerActionDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<SchedulerAction> getSchedulerActionList(int userId)
+	public List<SchedulerAction> getSchedulerActionList(String userId)
 	{
 		Session currentSession = sessionFactory.getCurrentSession();
 

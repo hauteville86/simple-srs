@@ -26,7 +26,7 @@ public class SchedulerServiceImpl implements SchedulerService {
 	
 	@Override
 	@Transactional
-	public List<SchedulerAction> getSchedulerActionList(int userId)
+	public List<SchedulerAction> getSchedulerActionList(String userId)
 	{
 		return schedulerActionDAO.getSchedulerActionList(userId);
 	}

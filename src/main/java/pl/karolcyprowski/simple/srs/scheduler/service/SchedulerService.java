@@ -9,7 +9,7 @@ import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 
 public interface SchedulerService {
 
-	public List<SchedulerAction> getSchedulerActionList(int userId);
+	public List<SchedulerAction> getSchedulerActionList(String userId);
 	
 	public void addSchedulerAction(SchedulerAction newAction);
 
