@@ -15,7 +15,7 @@
 </head>
 <body>
 	<c:forEach items="${utilities}" var="utility">
-		
+		<h3>${utility.name}</h3>
 	</c:forEach>
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
