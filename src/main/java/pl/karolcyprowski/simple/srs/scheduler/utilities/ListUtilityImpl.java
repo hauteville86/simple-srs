@@ -1,5 +1,7 @@
 package pl.karolcyprowski.simple.srs.scheduler.utilities;
 
-public class ListUtilityImpl implements ListUtility {
+import pl.karolcyprowski.simple.srs.scheduler.ScheduleUtilityImpl;
+
+public class ListUtilityImpl extends ScheduleUtilityImpl implements ListUtility {
 
 }

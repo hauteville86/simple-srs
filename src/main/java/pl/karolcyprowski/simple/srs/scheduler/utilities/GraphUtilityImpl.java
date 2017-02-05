@@ -1,5 +1,7 @@
 package pl.karolcyprowski.simple.srs.scheduler.utilities;
 
-public class GraphUtilityImpl implements GraphUtility {
+import pl.karolcyprowski.simple.srs.scheduler.ScheduleUtilityImpl;
+
+public class GraphUtilityImpl extends ScheduleUtilityImpl implements GraphUtility {
 
 }

@@ -14,7 +14,9 @@
 <script src="resources/js/ajax-utils.js"></script>
 </head>
 <body>
-	
+	<c:forEach items="${utilities}" var="utility">
+		
+	</c:forEach>
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
