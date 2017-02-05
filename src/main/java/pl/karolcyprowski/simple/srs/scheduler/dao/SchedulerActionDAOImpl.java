@@ -19,6 +19,7 @@ public class SchedulerActionDAOImpl implements SchedulerActionDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public List<SchedulerAction> getSchedulerActionList(int userId)
 	{
 		Session currentSession = sessionFactory.getCurrentSession();
@@ -31,6 +32,7 @@ public class SchedulerActionDAOImpl implements SchedulerActionDAO {
 		return schedulerActions;
 	}
 	
+	@Override
 	public void addSchedulerAction(SchedulerAction newAction)
 	{
 		logger.info("Adding the card: " + newAction.toString());

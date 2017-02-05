@@ -5,11 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 import pl.karolcyprowski.simple.srs.scheduler.service.SchedulerService;
 import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactory;
@@ -25,6 +27,8 @@ public class MainSchedulerImpl implements MainScheduler{
 	private List<ScheduleUtility> scheduleUtilities;
 	
 	private String userId;
+	
+	static Logger logger = Logger.getLogger(MainSchedulerImpl.class);
 	
 	public MainSchedulerImpl()
 	{
@@ -55,14 +59,22 @@ public class MainSchedulerImpl implements MainScheduler{
 	{
 		userId = getUserId();
 		scheduleUtilities = new LinkedList<ScheduleUtility>();
-		List<SchedulerUtility> scheduleUtilitiesFromBackend = schedulerService.loadScheduleUtilitiesFromBackend(userId);
-		Iterator<SchedulerUtility> utilitiesFromBackend = scheduleUtilitiesFromBackend.iterator();
-		while(utilitiesFromBackend.hasNext())
+		try
 		{
-			SchedulerUtility utilityFromBackend = utilitiesFromBackend.next();
-			ScheduleUtility utility = utilityFactory.createUtilityFromBackendData(utilityFromBackend);
-			scheduleUtilities.add(utility);
+			List<SchedulerUtility> scheduleUtilitiesFromBackend = schedulerService.loadScheduleUtilitiesFromBackend(userId);
+			Iterator<SchedulerUtility> utilitiesFromBackend = scheduleUtilitiesFromBackend.iterator();
+			while(utilitiesFromBackend.hasNext())
+			{
+				SchedulerUtility utilityFromBackend = utilitiesFromBackend.next();
+				ScheduleUtility utility = utilityFactory.createUtilityFromBackendData(utilityFromBackend);
+				scheduleUtilities.add(utility);
+			}
 		}
+		catch(NullPointerException e)
+		{
+			logger.error(e);
+		}
+		
 	}
 
 	public String getUserId() {

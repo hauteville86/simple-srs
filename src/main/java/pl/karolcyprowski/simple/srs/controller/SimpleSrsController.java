@@ -1,16 +1,12 @@
 package pl.karolcyprowski.simple.srs.controller;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -255,19 +251,7 @@ public class SimpleSrsController {
 	@RequestMapping("/scheduler")
 	public String scheduler(Model model)
 	{
-		Map<String, ScheduleUtility> scheduleUtilitiesMap = mainScheduler.getScheduleUtilities();
-		List<ScheduleUtility> scheduleUtilities = new LinkedList<ScheduleUtility>();
-		try{
-			for(Entry<String, ScheduleUtility> scheduleUtilityEntry : scheduleUtilitiesMap.entrySet())
-			{
-				ScheduleUtility scheduleUtility = scheduleUtilityEntry.getValue();
-				scheduleUtilities.add(scheduleUtility);
-			}
-		}
-		catch(NullPointerException e){
-			String errorMessage = e.getMessage();
-			logger.error(errorMessage);
-		}
+		List<ScheduleUtility> scheduleUtilities = mainScheduler.getScheduleUtilities();
 		model.addAttribute("utilities", scheduleUtilities);
 		return "scheduler";
 	}
