@@ -14,7 +14,8 @@ public class UtilityFactoryImpl implements UtilityFactory {
 		switch (name) {
 		case "list":
 			return new ListUtilityImpl();
-		
+		case "graph":
+			return new GraphUtilityImpl();
 
 		default:
 			break;
