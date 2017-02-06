@@ -256,6 +256,12 @@ public class SimpleSrsController {
 		return "scheduler";
 	}
 	
+	@RequestMapping("/addAction")
+	public String goToAddAction(Model model)
+	{
+		return "addaction";
+	}
+	
 	private void updateBaseInfo()
 	{
 		baseInfo = simpleSrsService.generateBaseInfo();
