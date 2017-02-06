@@ -20,11 +20,8 @@ public class SchedulerAction {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="userid")
-	private int userid;
-	
-	@Column(name="utilityid")
-	private int utilityId;
+	@Column(name="user")
+	private String user;
 	
 	@Column(name="date", columnDefinition="DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -38,13 +35,12 @@ public class SchedulerAction {
 	
 	public SchedulerAction()
 	{
-		
+		this.date = new Date();
 	}
 	
-	public SchedulerAction(int userId, int utilityId, Date date, String action, int time)
+	public SchedulerAction(int userId, Date date, String action, int time)
 	{
-		this.userid = userId;
-		this.utilityId = utilityId;
+		this.user = user;
 		this.date = date;
 		this.action = action;
 		this.time = time;
@@ -82,20 +78,12 @@ public class SchedulerAction {
 		this.id = id;
 	}
 
-	public int getUtilityId() {
-		return utilityId;
+	public String getUser() {
+		return user;
 	}
 
-	public void setUtilityId(int utilityId) {
-		this.utilityId = utilityId;
-	}
-
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	@Override
@@ -104,9 +92,7 @@ public class SchedulerAction {
 		builder.append("SchedulerAction [id=");
 		builder.append(id);
 		builder.append(", userid=");
-		builder.append(userid);
-		builder.append(", utilityId=");
-		builder.append(utilityId);
+		builder.append(user);
 		builder.append(", date=");
 		builder.append(date);
 		builder.append(", action=");
