@@ -11,10 +11,15 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 
+
 <script src="resources/js/ajax-utils.js"></script>
+<div id="nav-placeholder" />
 </head>
 <body>
 	<h2>Add action</h2>
+	<form:form>
+		
+	</form:form>
 	<c:forEach items="${utilities}" var="utility">
 		<h3>${utility.name}</h3>
 	</c:forEach>
@@ -23,5 +28,10 @@
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/decklist-script.js"></script>
+	<script>
+		$.get("/resources/html/navbar.html", function(data) {
+			$("#nav-placeholder").replaceWith(data);
+		});
+	</script>
 </body>
 </html>
