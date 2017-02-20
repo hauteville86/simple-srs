@@ -31,6 +31,8 @@ import pl.karolcyprowski.simple.srs.scheduler.MainSchedulerImpl;
 import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactory;
 import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactoryImpl;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
+import pl.karolcyprowski.simple.srs.user.User;
+import pl.karolcyprowski.simple.srs.user.UserImpl;
 
 @Configuration
 @EnableWebMvc
@@ -94,6 +96,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	}
 	
 	@Bean
+    public User user()
+    {
+    	return new UserImpl();
+    }
+	
+	@Bean
 	public MainScheduler mainScheduler()
 	{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -119,4 +127,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }    
+    
+    
 }

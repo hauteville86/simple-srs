@@ -7,14 +7,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
-import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 import pl.karolcyprowski.simple.srs.scheduler.service.SchedulerService;
 import pl.karolcyprowski.simple.srs.scheduler.utilities.UtilityFactory;
+import pl.karolcyprowski.simple.srs.user.User;
+import pl.karolcyprowski.simple.srs.user.UserImpl;
 
 public class MainSchedulerImpl implements MainScheduler{
 
@@ -24,6 +22,9 @@ public class MainSchedulerImpl implements MainScheduler{
 	@Autowired
 	private UtilityFactory utilityFactory;
 	
+	@Autowired
+	private User user;
+	
 	private List<ScheduleUtility> scheduleUtilities;
 	
 	private String userId;
@@ -32,14 +33,14 @@ public class MainSchedulerImpl implements MainScheduler{
 	
 	public MainSchedulerImpl()
 	{
-		if(userId == null)
+		if(userId != null)
 		{
 			loadScheduleUtilitiesForBackend();
 		}		
 	}
 
 	public List<ScheduleUtility> getScheduleUtilities() {
-		if(userId == null)
+		if(getUserId() != null)
 		{
 			loadScheduleUtilitiesForBackend();
 		}
@@ -57,7 +58,6 @@ public class MainSchedulerImpl implements MainScheduler{
 	
 	private void loadScheduleUtilitiesForBackend()
 	{
-		userId = getUserId();
 		scheduleUtilities = new LinkedList<ScheduleUtility>();
 		try
 		{
@@ -81,14 +81,11 @@ public class MainSchedulerImpl implements MainScheduler{
 		if(userId == null)
 		{
 			//get the userId from logged user
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if(!(authentication instanceof AnonymousAuthenticationToken))
+			if(user == null)
 			{
-				if(authentication != null)
-				{
-					userId = authentication.getName();
-				}
+				user = new UserImpl();
 			}
+			userId = user.getUserId();
 		}
 		return userId;
 	}
