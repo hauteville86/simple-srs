@@ -19,4 +19,6 @@ public interface SchedulerService {
 	 * @return empty list if no utilities are found.
 	 */
 	public List<SchedulerUtility> loadScheduleUtilitiesFromBackend(String userId);
+
+	public ScheduleUtility createUtilityFromBackendData(SchedulerUtility utilityFromBackend);
 }

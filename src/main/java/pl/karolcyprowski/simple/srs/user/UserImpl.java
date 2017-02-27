@@ -12,22 +12,27 @@ public class UserImpl implements User {
 	
 	public UserImpl()
 	{
-		
+		initUserId();
 	}
 	
 	public String getUserId()
 	{
 		if(userId == null)
 		{
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			if(!(authentication instanceof AnonymousAuthenticationToken))
-			{
-				if(authentication != null)
-				{
-					userId = authentication.getName();
-				}
-			}
+			initUserId();
 		}
 		return userId;
+	}
+	
+	private void initUserId()
+	{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if(!(authentication instanceof AnonymousAuthenticationToken))
+		{
+			if(authentication != null)
+			{
+				userId = authentication.getName();
+			}
+		}
 	}
 }

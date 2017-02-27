@@ -24,7 +24,7 @@ public class SchedulerActionDAOImpl implements SchedulerActionDAO {
 	{
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		Query query = currentSession.createQuery("from SchedulerAction where userid=" + userId);
+		Query query = currentSession.createQuery("from SchedulerAction where user=" + userId);
 
 		// get the result list
 		List<SchedulerAction> schedulerActions = query.list();

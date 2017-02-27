@@ -23,6 +23,8 @@ import pl.karolcyprowski.simple.srs.entities.Deck;
 import pl.karolcyprowski.simple.srs.entities.User;
 import pl.karolcyprowski.simple.srs.scheduler.MainScheduler;
 import pl.karolcyprowski.simple.srs.scheduler.ScheduleUtility;
+import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerAction;
+import pl.karolcyprowski.simple.srs.scheduler.service.SchedulerService;
 import pl.karolcyprowski.simple.srs.service.SimpleSrsService;
 
 @Controller
@@ -45,6 +47,9 @@ public class SimpleSrsController {
 	
 	@Autowired
 	private MainScheduler mainScheduler;
+	
+	@Autowired
+	private SchedulerService schedulerService;
 	
 	private Iterator<Card> cardsIterator;
 	
@@ -256,10 +261,20 @@ public class SimpleSrsController {
 		return "scheduler";
 	}
 	
-	@RequestMapping("/addAction")
+	@RequestMapping("/addaction")
 	public String goToAddAction(Model model)
 	{
+		SchedulerAction action = new SchedulerAction();
+		model.addAttribute("action", action);
 		return "addaction";
+	}
+	
+	@RequestMapping("/addNewAction")
+	public String goToAddAction(@ModelAttribute("action") SchedulerAction action, Model model)
+	{
+		logger.info(action);
+		schedulerService.addSchedulerAction(action);		
+		return null;
 	}
 	
 	private void updateBaseInfo()

@@ -8,12 +8,17 @@ import pl.karolcyprowski.simple.srs.scheduler.entities.SchedulerUtility;
 @Component
 public class UtilityFactoryImpl implements UtilityFactory {
 
+	public UtilityFactoryImpl()
+	{
+		
+	}
+	
 	public ScheduleUtility createUtilityFromBackendData(SchedulerUtility source)
 	{
 		String name = source.getName();
 		switch (name) {
 		case "list":
-			return new ListUtilityImpl();
+			ScheduleUtility listUtility = new ListUtilityImpl();
 		case "graph":
 			return new GraphUtilityImpl();
 

@@ -66,7 +66,7 @@ public class MainSchedulerImpl implements MainScheduler{
 			while(utilitiesFromBackend.hasNext())
 			{
 				SchedulerUtility utilityFromBackend = utilitiesFromBackend.next();
-				ScheduleUtility utility = utilityFactory.createUtilityFromBackendData(utilityFromBackend);
+				ScheduleUtility utility = schedulerService.createUtilityFromBackendData(utilityFromBackend);
 				scheduleUtilities.add(utility);
 			}
 		}

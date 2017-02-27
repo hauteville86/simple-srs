@@ -6,32 +6,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Schedule Utilities</title>
+<title>Add action</title>
 <link rel="stylesheet" href="resources/css/modal.css">
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 
 
 <script src="resources/js/ajax-utils.js"></script>
-<div id="nav-placeholder" />
+<link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
 	<h2>Add action</h2>
-	<form:form>
-		
+	<form:form action="addNewAction" modelAttribute="action" method="POST">
+		<table>
+			<tbody>
+				<tr>
+					<td><label>Action:</label></td>
+					<td><form:input path="action" type="text" /></td>
+				</tr>
+
+				<tr>
+					<td><label>Time amount(min):</label></td>
+					<td><form:input path="time" type="number" min="0"/></td>
+				</tr>
+
+				<tr>
+					<td><label></label></td>
+					<td><input type="submit" value="Save" class="save" /></td>
+				</tr>
+
+			</tbody>
+		</table>
 	</form:form>
-	<c:forEach items="${utilities}" var="utility">
-		<h3>${utility.name}</h3>
-	</c:forEach>
 
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/decklist-script.js"></script>
-	<script>
-		$.get("/resources/html/navbar.html", function(data) {
-			$("#nav-placeholder").replaceWith(data);
-		});
-	</script>
 </body>
 </html>

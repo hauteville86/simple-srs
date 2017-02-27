@@ -63,8 +63,7 @@ public class CardDAOImpl implements CardDAO {
 //		Session currentSession = sessionFactory.getCurrentSession();
 //		Query query = currentSession.createQuery("from Card where card.deckid=" + deckId);
 //		query.setParameter("deckId", deckId);
-//		query.executeUpdate();
-		
+//		query.executeUpdate();	
 	}
 
 }
