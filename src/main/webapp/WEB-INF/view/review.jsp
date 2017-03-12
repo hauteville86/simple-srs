@@ -41,11 +41,6 @@
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
-	<script>
-		$.get("navigation.html", function(data) {
-			$("#nav-placeholder").replaceWith(data);
-		});
-	</script>
 
 </body>
 </html>

@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 
 <script src="resources/js/ajax-utils.js"></script>
-
-<div id="nav-placeholder" />
+<link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
 	<a href="/addAction" class="btn btn-default btn-primary">Add action</a>
@@ -24,11 +23,7 @@
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/decklist-script.js"></script>
-	<script>
-		$.get("/resources/html/navbar.html", function(data) {
-			$("#nav-placeholder").replaceWith(data);
-		});
-	</script>
+	<!-- <script src="resources/js/decklist-script.js"></script> -->
+
 </body>
 </html>

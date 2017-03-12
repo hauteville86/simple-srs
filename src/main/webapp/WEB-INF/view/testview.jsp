@@ -13,7 +13,6 @@
 
 <script src="resources/js/ajax-utils.js"></script>
 
-<div id="nav-placeholder" />
 </head>
 <body>
 	<div class="btn-group" id="testview-deck-buttons">
@@ -86,10 +85,10 @@
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/decklist-script.js"></script>
-	<script>
+	<!--  <script>
 		$.get("/resources/html/navbar.html", function(data) {
 			$("#nav-placeholder").replaceWith(data);
 		});
-	</script>
+	</script>  -->
 </body>
 </html>

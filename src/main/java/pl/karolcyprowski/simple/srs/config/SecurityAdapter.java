@@ -40,10 +40,10 @@ public class SecurityAdapter extends WebSecurityConfigurerAdapter {
 	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.jdbcAuthentication().dataSource(dataSource)
-			.passwordEncoder(passwordEncoder)
-			.usersByUsernameQuery("SELECT * FROM simplesrs.user WHERE username = ?")
-			.authoritiesByUsernameQuery("SELECT authority FROM simplesrs.authorities WHERE username = ?");
+//		auth.jdbcAuthentication().dataSource(dataSource)
+//			.passwordEncoder(passwordEncoder)
+//			.usersByUsernameQuery("SELECT * FROM simplesrs.user WHERE username = ?")
+//			.authoritiesByUsernameQuery("SELECT * FROM simplesrs.authorities WHERE username = ?");
 		
         auth
             .inMemoryAuthentication()

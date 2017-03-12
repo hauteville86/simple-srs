@@ -250,7 +250,7 @@ public class SimpleSrsController {
 	{
 		logger.info(user);
 		simpleSrsService.addUser(user);
-		return ":redirect/login";
+		return goToLogin();
 	}
 	
 	@RequestMapping("/scheduler")
