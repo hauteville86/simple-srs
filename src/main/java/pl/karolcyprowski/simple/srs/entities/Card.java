@@ -1,5 +1,6 @@
 package pl.karolcyprowski.simple.srs.entities;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="card")
-public class Card {
+public class Card implements Reviewable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -182,8 +183,6 @@ public class Card {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
 	
 	
 }

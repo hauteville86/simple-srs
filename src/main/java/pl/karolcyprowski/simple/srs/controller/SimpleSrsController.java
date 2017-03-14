@@ -53,6 +53,12 @@ public class SimpleSrsController {
 	
 	private Iterator<Card> cardsIterator;
 	
+	@RequestMapping("/")
+	public String navigateAfterLogon(Model model)
+	{
+		return showBase(model);
+	}
+	
 	@RequestMapping("/test")
 	public String showBase(Model model)
 	{
@@ -101,7 +107,7 @@ public class SimpleSrsController {
 		List<Card> cards = deckInfo.getCards();
 		Deck deck = deckInfo.getDeck();
 		Card card = new Card(deckId);
-		StatisticsUtil statisticsUtil = new StatisticsUtilImpl(deck);
+		StatisticsUtil statisticsUtil = new StatisticsUtilImpl(deckInfo);
 		model.addAttribute("statisticsUtil", statisticsUtil);
 		model.addAttribute("card", card);
 		model.addAttribute("cards", cards);
