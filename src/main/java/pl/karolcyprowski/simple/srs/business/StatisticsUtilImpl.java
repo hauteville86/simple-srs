@@ -33,7 +33,7 @@ public class StatisticsUtilImpl implements StatisticsUtil {
 		return getCardsPerDay(getCardsPerDayDays());
 	}
 	
-	public int[] getAccumulatedNumberOfCardsToReview(int days)
+	private int[] getAccumulatedNumberOfCardsToReview(int days)
 	{
 		int accumulatedReview = 0;
 		int[] accumulatedNumberOfCardsPerDay = new int[days];
@@ -47,7 +47,7 @@ public class StatisticsUtilImpl implements StatisticsUtil {
 		return accumulatedNumberOfCardsPerDay;
 	}
 	
-	public int[] getCardsPerDay(int days)
+	private int[] getCardsPerDay(int days)
 	{
 		int[] cardsPerDay = new int[days];
 		int indexForCardsPerDay = 0;
