@@ -13,10 +13,24 @@ public class StatisticsUtilImpl implements StatisticsUtil {
 
 	private List<Card> cards;
 	
+	private int cardsToReviewAccumulatedDays;
+	
+	private int cardsPerDayDays;
+	
 	public StatisticsUtilImpl(DeckInfo deckInfo)
 	{
 		cards = deckInfo.getCards();	
 		Collections.sort(cards, new NextReviewComparator());
+	}
+	
+	public int[] getAccumulatedNumberOfCardsToReview()
+	{
+		return getAccumulatedNumberOfCardsToReview(getCardsToReviewAccumulatedDays());
+	}
+	
+	public int[] getCardsPerDay()
+	{
+		return getCardsPerDay(getCardsPerDayDays());
 	}
 	
 	public int[] getAccumulatedNumberOfCardsToReview(int days)
@@ -70,6 +84,22 @@ public class StatisticsUtilImpl implements StatisticsUtil {
 	public int getNumberOfCards()
 	{
 		return cards.size();
+	}
+
+	public int getCardsToReviewAccumulatedDays() {
+		return cardsToReviewAccumulatedDays;
+	}
+
+	public void setCardsToReviewAccumulatedDays(int cardsToReviewAccumulatedDays) {
+		this.cardsToReviewAccumulatedDays = cardsToReviewAccumulatedDays;
+	}
+
+	public int getCardsPerDayDays() {
+		return cardsPerDayDays;
+	}
+
+	public void setCardsPerDayDays(int cardsPerDayDays) {
+		this.cardsPerDayDays = cardsPerDayDays;
 	}
 	
 }
