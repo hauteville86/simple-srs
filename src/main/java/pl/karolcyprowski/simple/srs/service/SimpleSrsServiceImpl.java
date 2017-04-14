@@ -113,8 +113,13 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	@Override
 	@Transactional
 	public void deleteDeck(int deckId) {
-		deckDAO.deleteDeck(deckId);
-		cardDAO.deleteCardsWithDeckId(deckId);
+		try{
+			deckDAO.deleteDeck(deckId);
+			cardDAO.deleteCardsWithDeckId(deckId);
+		} catch(IllegalArgumentException e) {
+			logger.warn(e);
+		}
+		
 	}
 	
 	@Override
