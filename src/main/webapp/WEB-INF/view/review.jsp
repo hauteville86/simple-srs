@@ -14,6 +14,7 @@
 <div id="nav-placeholder" />
 </head>
 <body>
+	<%@include file="/resources/html/navbar.html" %>
 	<c:set var="answerChecked" value="false" />
 	<table>
 		<tr>

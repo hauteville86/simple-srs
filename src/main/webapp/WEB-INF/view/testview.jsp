@@ -15,6 +15,7 @@
 
 </head>
 <body>
+	<%@include file="/resources/html/navbar.html" %>
 	<div class="btn-group" id="testview-deck-buttons">
 		<c:url var="addDeck" value="/addDeck">
 			<c:param name="page" value="decklist" />

@@ -13,6 +13,7 @@
 <link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
+	<%@include file="/resources/html/navbar.html" %>
 	End of review session
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>

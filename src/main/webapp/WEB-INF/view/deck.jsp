@@ -13,6 +13,7 @@
 <link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
+	<%@include file="/resources/html/navbar.html" %>
 	<table>
 		<h3>Deck name: ${deck.name}</h3>
 		<h3>Language: ${deck.language}</h3>

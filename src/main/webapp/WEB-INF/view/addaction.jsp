@@ -16,6 +16,7 @@
 <link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
+	<%@include file="/resources/html/navbar.html" %>
 	<h2>Add action</h2>
 	<form:form action="addNewAction" modelAttribute="action" method="POST">
 		<table>

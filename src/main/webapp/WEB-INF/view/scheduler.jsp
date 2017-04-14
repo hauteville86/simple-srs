@@ -15,6 +15,7 @@
 <link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
+	<%@include file="/resources/html/navbar.html" %>
 	<a href="/addAction" class="btn btn-default btn-primary">Add action</a>
 	<c:forEach items="${utilities}" var="utility">
 		<h3>${utility.name}</h3>
