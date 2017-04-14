@@ -55,7 +55,13 @@ public class SimpleSrsServiceImpl implements SimpleSrsService {
 	@Override
 	@Transactional
 	public Deck getDeck(int deckId) {
-		return deckDAO.getDeck(deckId);
+		try{
+			return deckDAO.getDeck(deckId);
+		} catch (IllegalArgumentException e) {
+			logger.warn(e);
+			return new Deck();
+		}
+		
 	}
 
 	@Override

@@ -14,6 +14,8 @@ public interface CardDAO {
 	public void updateCard(int cardId, Map<String, Object> valuesToUpdate);
 
 	public void addCard(Card card);
+	
+	public void deleteCard(int cardId);
 
 	public void deleteCardsWithDeckId(int deckId);
 

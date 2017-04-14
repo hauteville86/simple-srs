@@ -56,14 +56,28 @@ public class CardDAOImpl implements CardDAO {
 		Session currentSesion = sessionFactory.getCurrentSession();
 		currentSesion.saveOrUpdate(card);
 	}
+	
+	public void deleteCard(int cardId)
+	{
+		Session currentSession = sessionFactory.getCurrentSession();
+		Card card = currentSession.get(Card.class, cardId);
+		currentSession.delete(card);
+	}
 
 	@Override
 	public void deleteCardsWithDeckId(int deckId) {
 		logger.warn("deleteCardsWithDeckId() method is not implemented!");
-//		Session currentSession = sessionFactory.getCurrentSession();
-//		Query query = currentSession.createQuery("from Card where card.deckid=" + deckId);
-//		query.setParameter("deckId", deckId);
-//		query.executeUpdate();	
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("from Card where deckid=" + deckId);
+		List<Card> cards = query.list();
+		try{
+			for(Card card : cards){
+				deleteCard(card.getId());
+			}
+		} catch(NullPointerException e){
+			logger.warn(e);
+		}
+		
 	}
 
 }

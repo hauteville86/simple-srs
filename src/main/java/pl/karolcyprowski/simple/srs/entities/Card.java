@@ -1,5 +1,7 @@
 package pl.karolcyprowski.simple.srs.entities;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
@@ -51,13 +53,14 @@ public class Card implements Reviewable{
 	
 	public Card()
 	{
-		created = new Date();
-		nextRepeat = new Date();
+		this.created = new Date();
+		this.nextRepeat = new Date();
 	}
 
 	public Card(int deckId, int srsStatus, String front, String back, String comment, Date created, Date lastUpdated,
 			Date nextRepeat) {
-		super();
+		this.created = new Date();
+		this.nextRepeat = new Date();
 		this.deckId = deckId;
 		this.srsStatus = srsStatus;
 		this.front = front;
@@ -70,7 +73,8 @@ public class Card implements Reviewable{
 	
 	public Card(int deckId)
 	{
-		super();
+		this.created = new Date();
+		this.nextRepeat = new Date();
 		this.deckId = deckId;
 	}
 
@@ -139,6 +143,10 @@ public class Card implements Reviewable{
 	}
 
 	public Date getNextRepeat() {
+		if(nextRepeat == null)
+		{
+			setNextRepeat(new Date());
+		}
 		return nextRepeat;
 	}
 
