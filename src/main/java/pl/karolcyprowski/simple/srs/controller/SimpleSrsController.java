@@ -283,6 +283,12 @@ public class SimpleSrsController {
 		return null;
 	}
 	
+	@RequestMapping("/dictionary")
+	public String goToDictionary(Model model)
+	{
+		return "dictionary";
+	}
+	
 	private void updateBaseInfo()
 	{
 		baseInfo = simpleSrsService.generateBaseInfo();

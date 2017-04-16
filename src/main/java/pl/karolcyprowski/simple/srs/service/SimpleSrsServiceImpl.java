@@ -1,6 +1,5 @@
 package pl.karolcyprowski.simple.srs.service;
 
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,6 @@ import pl.karolcyprowski.simple.srs.business.BaseInfoImpl;
 import pl.karolcyprowski.simple.srs.business.DeckInfo;
 import pl.karolcyprowski.simple.srs.business.DeckInfoImpl;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
-import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
 import pl.karolcyprowski.simple.srs.dao.CardDAO;
 import pl.karolcyprowski.simple.srs.dao.DeckDAO;
 import pl.karolcyprowski.simple.srs.dao.UserDAO;

@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="resources/css/modal.css">
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<link rel="import" href="WEB-INF/view/navbar.html">
 </head>
 <body>
 	<%@include file="/resources/html/navbar.html" %>

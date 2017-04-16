@@ -6,14 +6,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.apache.log4j.Logger;
-import org.hibernate.*;
-import org.hibernate.cfg.*;
 
-import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
-import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 
 @Repository
