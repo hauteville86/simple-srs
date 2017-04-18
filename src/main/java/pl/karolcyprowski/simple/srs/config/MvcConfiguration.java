@@ -21,6 +21,8 @@ import pl.karolcyprowski.simple.srs.business.ReviewSessionImpl;
 import pl.karolcyprowski.simple.srs.business.SimpleSrsGlossAlgorithm;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.controller.SimpleSrsController;
+import pl.karolcyprowski.simple.srs.dictionary.SRSDictionary;
+import pl.karolcyprowski.simple.srs.dictionary.SRSDictionaryImpl;
 import pl.karolcyprowski.simple.srs.options.Options;
 import pl.karolcyprowski.simple.srs.options.OptionsImpl;
 import pl.karolcyprowski.simple.srs.scheduler.MainScheduler;
@@ -118,6 +120,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 //			}
 //		}
 		return new MainSchedulerImpl();
+	}
+	
+	@Bean
+	public SRSDictionary srsDictionary()
+	{
+		return new SRSDictionaryImpl();
 	}
 	
 

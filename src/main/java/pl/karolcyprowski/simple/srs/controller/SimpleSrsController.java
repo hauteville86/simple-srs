@@ -1,7 +1,10 @@
 package pl.karolcyprowski.simple.srs.controller;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ import pl.karolcyprowski.simple.srs.business.ReviewSession;
 import pl.karolcyprowski.simple.srs.business.SrsAlgorithm;
 import pl.karolcyprowski.simple.srs.business.StatisticsUtil;
 import pl.karolcyprowski.simple.srs.business.StatisticsUtilImpl;
+import pl.karolcyprowski.simple.srs.dictionary.SRSDictionary;
+import pl.karolcyprowski.simple.srs.dictionary.SRSDictionaryImpl;
+import pl.karolcyprowski.simple.srs.dictionary.entities.Langcode;
 import pl.karolcyprowski.simple.srs.entities.Card;
 import pl.karolcyprowski.simple.srs.entities.Deck;
 import pl.karolcyprowski.simple.srs.entities.User;
@@ -50,6 +56,9 @@ public class SimpleSrsController {
 	
 	@Autowired
 	private SchedulerService schedulerService;
+	
+	@Autowired
+	private SRSDictionary srsDictionary;
 	
 	private Iterator<Card> cardsIterator;
 	
@@ -286,7 +295,42 @@ public class SimpleSrsController {
 	@RequestMapping("/dictionary")
 	public String goToDictionary(Model model)
 	{
+		
+		List<Langcode> langcodes = srsDictionary.getLangcodes();
+		Collections.sort(langcodes);
+		String languageOne = srsDictionary.getLanguageOne();
+		String languageTwo = srsDictionary.getLanguageTwo();
+		Map<String, String> langcodesToNames = srsDictionary.getLangcodes().stream()
+				.collect(Collectors.toMap(Langcode::getLangcode, Langcode::getLangname));
+		model.addAttribute("langcodesOne", langcodes);
+		model.addAttribute("langcodesTwo", langcodes);
+		model.addAttribute("lang1", langcodesToNames.get(languageOne));
+		model.addAttribute("lang2", langcodesToNames.get(languageTwo));
+		model.addAttribute("dictionary", srsDictionary);
 		return "dictionary";
+	}
+	
+	@RequestMapping("/dictSetLang")
+	public String setLangOneInDictionary(@ModelAttribute("name1") String name1, 
+			@ModelAttribute("name2") String name2, Model model)
+	{
+		Map<String, String> langnamesToCodes = srsDictionary.getLangcodes().stream()
+				.collect(Collectors.toMap(Langcode::getLangname, Langcode::getLangcode));
+		if(name1 != null)
+		{
+			if(!name1.isEmpty())
+			{
+				srsDictionary.setLanguageOne(langnamesToCodes.get(name1));
+			}			
+		}
+		if(name2 != null)
+		{
+			if(!name2.isEmpty())
+			{
+				srsDictionary.setLanguageTwo(langnamesToCodes.get(name2));
+			}			
+		}
+		return goToDictionary(model);
 	}
 	
 	private void updateBaseInfo()

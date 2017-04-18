@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="langcode")
-public class Langcode {
+public class Langcode implements Comparable<Langcode>{
 
 	@Id
 	@Column(name="langcode")
@@ -40,6 +40,11 @@ public class Langcode {
 
 	public void setLangname(String langname) {
 		this.langname = langname;
+	}
+	
+	public int compareTo(Langcode langcode)
+	{
+		return this.getLangname().compareTo(langcode.getLangname());
 	}
 	
 	

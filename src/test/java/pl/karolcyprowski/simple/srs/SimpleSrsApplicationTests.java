@@ -22,6 +22,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import pl.karolcyprowski.simple.srs.business.SimpleSrsGlossAlgorithm;
 import pl.karolcyprowski.simple.srs.business.SrsButton;
+import pl.karolcyprowski.simple.srs.dictionary.SRSDictionary;
+import pl.karolcyprowski.simple.srs.dictionary.SRSDictionaryImpl;
 import pl.karolcyprowski.simple.srs.dictionary.entities.DictionaryItem;
 import pl.karolcyprowski.simple.srs.dictionary.entities.Langcode;
 import pl.karolcyprowski.simple.srs.dictionary.service.DictionaryService;
@@ -144,6 +146,12 @@ public class SimpleSrsApplicationTests {
 	{
 		List<DictionaryItem> items = dictionaryService.getAllItems();
 		assertEquals(true, items.size() > 0);
+	}
+	
+	@Test
+	public void langcodesAreNotEmpty()
+	{
+		assertEquals(true, new SRSDictionaryImpl().getLangcodes().size() > 0);
 	}
 	
 	
