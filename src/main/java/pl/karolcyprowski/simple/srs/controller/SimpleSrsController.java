@@ -235,7 +235,8 @@ public class SimpleSrsController {
 		logger.info(card);
 		simpleSrsService.addCard(card);
 		updateBaseInfo();
-		return "deck";
+		int deckId = card.getDeckId();
+		return showDeck(deckId, model);
 	}
 	
 	@PostMapping("/addDeck")
@@ -289,7 +290,7 @@ public class SimpleSrsController {
 	{
 		logger.info(action);
 		schedulerService.addSchedulerAction(action);		
-		return null;
+		return scheduler(model);
 	}
 	
 	@RequestMapping("/dictionary")
