@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Deck</title>
-<link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/style.css">
 <script src="resources/js/script.js"></script>
 <script src="resources/js/ajax-utils.js"></script>
 
@@ -15,22 +15,13 @@
 </head>
 <body>
 	<%@include file="/resources/html/navbar.html" %>
+	<div class="container container-2 text-center">
 	<c:set var="answerChecked" value="false" />
-	<table>
-		<tr>
-			<h4>
-				<div id="front" class="card-front-text">${card.front}</div>
-			</h4>
-		</tr>
-		<tr>
-			<h4>
-				<div id="back" class="card-back-text">${card.back}</div>
-			</h4>
-		</tr>
-	</table>
-	<button id="go-to-next-button" class="btn btn-primary">Check
-		the answer</button>
-	<div class="btn-group" id="srs-buttons">
+	<h2 id="front-review-session" class="card-front-text">${card.front}</h2>
+	<h2 id="back-review-session" class="card-back-text">${card.back}</h2>
+	<div class="button-div-2 text-center">
+	<button id="go-to-next-button" class="btn btn-primary">Check the answer</button>
+	<div class="btn-group " id="srs-buttons">
 		<c:forEach var="button" items="${buttons}">
 			<c:url var="updateCard" value="/updateCard">
 				<c:param name="cardId" value="${card.id}" />
@@ -38,6 +29,8 @@
 			</c:url>
 			<a href="${updateCard}" class="btn btn-primary">${button.text}</a>
 		</c:forEach>
+	</div>
+	</div>
 	</div>
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>

@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	function changeSrsStatus(event) {
 		console.log('SrsStatus is going to be changed');
-		console.log(document.querySelector("#back").attributes);
-		document.querySelector("#back").style.color = "black";
+		console.log(document.querySelector("#back-review-session").attributes);
+		document.querySelector("#back-review-session").style.color = "black";
 		$("#srs-buttons").show();
 //		$("#srs-button-1").show();
 //		$("#srs-button-2").show();

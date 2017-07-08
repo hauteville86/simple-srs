@@ -7,13 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Dictionary</title>
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
 	<%@include file="/resources/html/navbar.html" %>
 	
-	<div class="container">
+	<div class="container container-2">
 		<div class="row">
-			<div class="col-md-12">Choose your languages:</div>
+			<div class="col-md-12"><h2>Choose your languages:</h2></div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
