@@ -67,5 +67,9 @@ public class ReviewSessionImpl implements ReviewSession {
 		this.reviewCard = reviewCard;
 	}
 	
+	public boolean hasDeckId(int deckId) {
+		return reviewDeckId == deckId;
+	}
+	
 	
 }

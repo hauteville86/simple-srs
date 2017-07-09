@@ -129,7 +129,7 @@ public class SimpleSrsController {
 	public String startReview(@RequestParam("id") int deckId, Model model)
 	{
 		logger.info("Entering startReview(deckid=" + deckId + ")");
-		if(reviewSession.isActiveSession())
+		if(reviewSession.isActiveSession() && reviewSession.hasDeckId(deckId))
 		{
 			logger.info("Review session is still active with id=" + deckId);
 			cardsIterator = reviewSession.getReviewCardIterator();
@@ -177,6 +177,7 @@ public class SimpleSrsController {
 		logger.info("Create new review session with id=" + deckId);
 		reviewSession.setReviewDeckId(deckId);
 		reviewSession.setReviewCardIterator(cardsIterator);
+		reviewSession.setReviewCard(null);
 	}
 	
 	@RequestMapping("/updateCard")

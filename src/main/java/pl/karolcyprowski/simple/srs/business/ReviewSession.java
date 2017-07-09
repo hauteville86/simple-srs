@@ -21,4 +21,6 @@ public interface ReviewSession {
 	public Card getReviewCard();
 
 	public void setReviewCard(Card reviewCard);
+	
+	public boolean hasDeckId(int deckId);
 }
