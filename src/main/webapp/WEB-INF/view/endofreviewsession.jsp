@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Review Session Ended</title>
-<link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/style.css">
 <script src="resources/js/script.js"></script>
 <script src="resources/js/ajax-utils.js"></script>
 <link rel="import" href="WEB-INF/view/navbar.html">
