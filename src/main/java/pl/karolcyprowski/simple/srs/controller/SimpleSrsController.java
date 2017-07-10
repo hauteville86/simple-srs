@@ -187,6 +187,7 @@ public class SimpleSrsController {
 		logger.info("SrsLevel for card with cardId=" + cardId + " equals to " + srsLevel);
 		int cardSrsStatus = reviewSession.getReviewCard().getSrsStatus();
 		simpleSrsService.updateCard(cardId, srsLevel, cardSrsStatus);
+		updateBaseInfo();
 		if(cardsIterator == null)
 		{
 			cardsIterator = reviewSession.getReviewCardIterator();
