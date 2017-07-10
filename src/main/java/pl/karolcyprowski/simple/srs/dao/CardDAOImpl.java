@@ -66,7 +66,7 @@ public class CardDAOImpl implements CardDAO {
 
 	@Override
 	public void deleteCardsWithDeckId(int deckId) {
-		logger.warn("deleteCardsWithDeckId() method is not implemented!");
+//		logger.warn("deleteCardsWithDeckId() method is not implemented!");
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query query = currentSession.createQuery("from Card where deckid=" + deckId);
 		List<Card> cards = query.list();

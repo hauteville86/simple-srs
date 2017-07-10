@@ -25,4 +25,9 @@ public interface DeckInfo {
 	
 	public List<Card> getCardsToReview();
 	
+	public int getNumOfCardsToReviewInWeek();
+	
+	public int getNumOfCardsToReviewInMonth();
+	
+	public int getNumOfCardsToReviewInYear();
 }

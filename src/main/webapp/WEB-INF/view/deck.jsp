@@ -90,11 +90,14 @@
 		<div class="modal-statistics-body">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>Deck name: ${deck.name}</h2>
-					<h3>Language: ${deck.language}</h3>
+					<h4>Deck name: ${deck.name}</h4>
+					<h4>Language: ${deck.language}</h4>
 					<p>Created: ${deck.created}</p>
 					<p>Cards in deck: ${deckInfo.numOfCards}</p>
 					<p>Cards to review: ${deckInfo.numOfCardsToReview}</p>
+					<p>Cards to review in week: ${deckInfo.numOfCardsToReviewInWeek}</p>
+					<p>Cards to review in month: ${deckInfo.numOfCardsToReviewInMonth}</p>
+					<p>Cards to review in year: ${deckInfo.numOfCardsToReviewInYear}</p>
 				</div>
 			</div>
 		</div>	
