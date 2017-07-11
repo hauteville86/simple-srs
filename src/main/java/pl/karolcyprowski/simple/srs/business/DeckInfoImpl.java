@@ -19,7 +19,6 @@ public class DeckInfoImpl implements DeckInfo {
 	private List<Card> cards;
 	
 	private int numOfCards;
-	private int numOfCardsToReview;
 	
 	public DeckInfoImpl(Deck deck, List<Card> cards)
 	{
@@ -67,11 +66,11 @@ public class DeckInfoImpl implements DeckInfo {
 	}
 
 	public int getNumOfCardsToReview() {
-		return numOfCardsToReview;
+		return getCardsToReview().size();
 	}
 
 	public void setNumOfCardsToReview(int numOfCardsToReview) {
-		this.numOfCardsToReview = numOfCardsToReview;
+//		this.numOfCardsToReview = numOfCardsToReview;
 	}
 	
 	private void updateDeckInfo()
@@ -85,14 +84,14 @@ public class DeckInfoImpl implements DeckInfo {
 				cardsToReviewCounter++;
 			}
 		}
-		numOfCardsToReview = cardsToReviewCounter;
+//		numOfCardsToReview = cardsToReviewCounter;
 	}
 	
 	private List<Card> getCardsToReviewForDate(Date date) {
 		List<Card> cardsToReview = new LinkedList<Card>();
 		for(Card card : cards)
 		{
-			if(card.getNextRepeat().before(date))
+			if(card.getNextRepeat().before(date) || card.getNextRepeat().equals(date))
 			{
 				cardsToReview.add(card);
 			}
