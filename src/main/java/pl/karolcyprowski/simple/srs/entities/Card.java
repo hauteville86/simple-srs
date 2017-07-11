@@ -1,7 +1,5 @@
 package pl.karolcyprowski.simple.srs.entities;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;

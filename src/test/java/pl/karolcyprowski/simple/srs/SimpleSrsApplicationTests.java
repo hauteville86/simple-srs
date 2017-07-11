@@ -148,11 +148,11 @@ public class SimpleSrsApplicationTests {
 		assertEquals(true, items.size() > 0);
 	}
 	
-	@Test
-	public void langcodesAreNotEmpty()
-	{
-		assertEquals(true, new SRSDictionaryImpl().getLangcodes().size() > 0);
-	}
+//	@Test
+//	public void langcodesAreNotEmpty()
+//	{
+//		assertEquals(true, new SRSDictionaryImpl().getLangcodes().size() > 0);
+//	}
 	
 	
 	

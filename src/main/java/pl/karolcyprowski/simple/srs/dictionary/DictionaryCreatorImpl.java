@@ -1,7 +1,5 @@
 package pl.karolcyprowski.simple.srs.dictionary;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -67,10 +65,10 @@ public class DictionaryCreatorImpl implements DictionaryCreator {
 			bf.close();
 		}catch(FileNotFoundException e){
 			logger.warn(e);
-			assertEquals(true, false);
+//			assertEquals(true, false);
 		}catch(IOException e){
 			logger.warn(e);
-			assertEquals(true, false);
+//			assertEquals(true, false);
 		}
 	}
 
