@@ -14,7 +14,10 @@
 </head>
 <body>
 	<%@include file="/resources/html/navbar.html" %>
-	End of review session
+	<div align="center">
+		<h2>End of review session</h2>
+	</div>
+	
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	<script src="resources/js/jquery-3.1.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
