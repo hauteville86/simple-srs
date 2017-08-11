@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.karolcyprowski.simple.srs.business.BaseInfo;
+import pl.karolcyprowski.simple.srs.business.EbbinghausAlgorithm;
 import pl.karolcyprowski.simple.srs.business.ReviewSession;
 import pl.karolcyprowski.simple.srs.business.ReviewSessionImpl;
 import pl.karolcyprowski.simple.srs.business.SimpleSrsGlossAlgorithm;
@@ -38,6 +40,9 @@ import pl.karolcyprowski.simple.srs.user.UserImpl;
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	
 	static Logger logger = Logger.getLogger(SimpleSrsController.class);
+	
+	@Value("${pl.karolcyprowski.basic_algorithm}")
+	private String basicAlgorithm;
 	
 	@Autowired
 	public SimpleSrsService simpleSrsService;
@@ -73,7 +78,16 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	{
 		//TODO: The srsAlgorithm implementation shouldn't be hard-coded, but read from the properties instead
 		logger.info("Create new srsAlgorithm...");
-		return new SimpleSrsGlossAlgorithm();
+		switch(basicAlgorithm)
+		{
+			case "SimpleSrsGlossAlgorithm":
+				return new SimpleSrsGlossAlgorithm();
+			case "EbbinghausAlgorithm":
+				return new EbbinghausAlgorithm();
+			default:
+				return new EbbinghausAlgorithm();
+		}
+		
 	}
 	
 	@Bean
